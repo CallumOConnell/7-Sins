@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public class InventoryDraggedItem
     {
@@ -57,7 +57,7 @@ namespace Endure.Inventory
 
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, value + _offset, camera, out var newValue);
 
-                _image.rectTransform.localEulerAngles = newValue;
+                _image.rectTransform.localPosition = newValue;
 
                 if (CurrentController != null)
                 {

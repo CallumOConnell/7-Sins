@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public class InventoryController : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerExitHandler, IPointerEnterHandler, IInventoryController
     {
@@ -87,7 +87,12 @@ namespace Endure.Inventory
 
         public void OnDrag(PointerEventData eventData)
         {
-            
+            _currentEventData = eventData;
+
+            if (_draggedItem != null)
+            {
+                //_draggedItem.Position = eventData.position;
+            }
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -119,6 +124,8 @@ namespace Endure.Inventory
                 case InventoryDraggedItem.DropMode.Dropped:
                 {
                     OnItemDropped?.Invoke(_itemToDrag);
+
+                    ClearHoveredItem();
 
                     break;
                 }

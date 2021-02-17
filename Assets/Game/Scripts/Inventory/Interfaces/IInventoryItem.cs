@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public interface IInventoryItem
     {
@@ -52,7 +52,7 @@ namespace Endure.Inventory
                         {
                             for (int y1 = 0; y1 < otherItem.Height; y1++)
                             {
-                                if (otherItem.IsPartOfShape(new Vector2Int(x, y)))
+                                if (otherItem.IsPartOfShape(new Vector2Int(x1, y1)))
                                 {
                                     Vector2Int otherItemPoint = otherItem.Position + new Vector2Int(x1, y1);
 

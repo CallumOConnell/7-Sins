@@ -1,6 +1,6 @@
 using System;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public interface IInventoryController
     {

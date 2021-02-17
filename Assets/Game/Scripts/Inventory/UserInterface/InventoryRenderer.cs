@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Sins.Utils;
+using System;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public class InventoryRenderer : MonoBehaviour
     {
@@ -20,6 +22,8 @@ namespace Endure.Inventory
 
         internal IInventoryManager _inventory;
 
+        private InventoryRenderMode _renderMode;
+
         private bool _listenersSet;
 
         private Pool<Image> _imagePool;
@@ -31,38 +35,6 @@ namespace Endure.Inventory
         public RectTransform RectTransform { get; private set; }
 
         public Vector2 CellSize => _cellSize;
-
-        public void ClearSelection()
-        {
-            for (var i = 0; i < _grids.Length; i++)
-            {
-                _grids[i].sprite = _cellSpriteEmpty;
-                _grids[i].color = Color.white;
-            }
-        }
-        public void SelectItem(IInventoryItem item, bool blocked, Color color)
-        {
-            if (item == null) return;
-
-            ClearSelection();
-
-            for (var x = 0; x < item.Width; x++)
-            {
-                for (var y = 0; y < item.Height; y++)
-                {
-                    if (item.IsPartOfShape(new Vector2Int(x, y)))
-                    {
-                        var p = item.Position + new Vector2Int(x, y);
-                        if (p.x >= 0 && p.x < _inventory.Width && p.y >= 0 && p.y < _inventory.Height)
-                        {
-                            var index = p.y * _inventory.Width + (_inventory.Width - 1 - p.x);
-                            _grids[index].sprite = blocked ? _cellSpriteBlocked : _cellSpriteSelected;
-                            _grids[index].color = color;
-                        }
-                    }
-                }
-            }
-        }
 
         private void Awake()
         {
@@ -92,22 +64,28 @@ namespace Endure.Inventory
         {
             if (_inventory != null && !_listenersSet)
             {
-                _inventory.OnRebuild += ReRenderAllItems;
+                if (_cellSpriteEmpty == null) throw new NullReferenceException("Sprite for empty cell is null.");
+                if (_cellSpriteSelected == null) throw new NullReferenceException("Sprite for selected cells is null.");
+                if (_cellSpriteBlocked == null) throw new NullReferenceException("Sprite for blocked cells is null.");
+
+                _inventory.OnRebuilt += ReRenderAllItems;
                 _inventory.OnItemAdded += HandleItemAdded;
                 _inventory.OnItemRemoved += HandleItemRemoved;
                 _inventory.OnItemDropped += HandleItemRemoved;
                 _inventory.OnResized += HandleResized;
-            }
 
-            ReRenderGrid();
-            ReRenderAllItems();
+                _listenersSet = true;
+
+                ReRenderGrid();
+                ReRenderAllItems();
+            }
         }
 
         private void OnDisable()
         {
             if (_inventory != null && _listenersSet)
             {
-                _inventory.OnRebuild -= ReRenderAllItems;
+                _inventory.OnRebuilt -= ReRenderAllItems;
                 _inventory.OnItemAdded -= HandleItemAdded;
                 _inventory.OnItemRemoved -= HandleItemRemoved;
                 _inventory.OnItemDropped -= HandleItemRemoved;
@@ -125,7 +103,7 @@ namespace Endure.Inventory
                 {
                     _grids[i].gameObject.SetActive(false);
 
-                    
+                    RecycleImage(_grids[i]);
 
                     _grids[i].transform.SetSiblingIndex(i);
                 }
@@ -137,29 +115,51 @@ namespace Endure.Inventory
 
             Image grid;
 
-            Vector3 topLeftCorner = new Vector3(-containerSize.x / 2, -containerSize.y / 2, 0);
-
-            Vector3 halfCellSize = new Vector3(_cellSize.x / 2, _cellSize.y / 2, 0);
-
-            _grids = new Image[_inventory.Width *_inventory.Height];
-
-            int counter = 0;
-
-            for (int y = 0; y < _inventory.Height; y++)
+            switch (_renderMode)
             {
-                for (int x = 0; x < _inventory.Width; x++)
+                case InventoryRenderMode.Single:
                 {
                     grid = CreateImage(_cellSpriteEmpty, true);
 
-                    grid.gameObject.name = $"Grid {counter}";
                     grid.rectTransform.SetAsFirstSibling();
                     grid.type = Image.Type.Sliced;
-                    grid.rectTransform.localPosition = topLeftCorner + new Vector3(_cellSize.x * (_inventory.Width - 1 - x), _cellSize.y * y, 0) + halfCellSize;
-                    grid.rectTransform.sizeDelta = _cellSize;
+                    grid.rectTransform.localPosition = Vector3.zero;
+                    grid.rectTransform.sizeDelta = containerSize;
 
-                    _grids[counter] = grid;
+                    _grids = new[] { grid };
 
-                    counter++;
+                    break;
+                }
+
+                default:
+                {
+                    Vector3 topLeftCorner = new Vector3(-containerSize.x / 2, -containerSize.y / 2, 0);
+
+                    Vector3 halfCellSize = new Vector3(_cellSize.x / 2, _cellSize.y / 2, 0);
+
+                    _grids = new Image[_inventory.Width * _inventory.Height];
+
+                    int counter = 0;
+
+                    for (int y = 0; y < _inventory.Height; y++)
+                    {
+                        for (int x = 0; x < _inventory.Width; x++)
+                        {
+                            grid = CreateImage(_cellSpriteEmpty, true);
+
+                            grid.gameObject.name = $"Grid {counter}";
+                            grid.rectTransform.SetAsFirstSibling();
+                            grid.type = Image.Type.Sliced;
+                            grid.rectTransform.localPosition = topLeftCorner + new Vector3(_cellSize.x * (_inventory.Width - 1 - x), _cellSize.y * y, 0) + halfCellSize;
+                            grid.rectTransform.sizeDelta = _cellSize;
+
+                            _grids[counter] = grid;
+
+                            counter++;
+                        }
+                    }
+
+                    break;
                 }
             }
 
@@ -177,7 +177,7 @@ namespace Endure.Inventory
 
             _items.Clear();
 
-            foreach (IInventoryItem item in _inventory.Items)
+            foreach (IInventoryItem item in _inventory.AllItems)
             {
                 HandleItemAdded(item);
             }
@@ -187,7 +187,14 @@ namespace Endure.Inventory
         {
             Image image = CreateImage(item.Sprite, false);
 
-            image.rectTransform.localPosition = GetItemOffset(item);
+            if (_renderMode == InventoryRenderMode.Single)
+            {
+                image.rectTransform.localPosition = RectTransform.rect.center;
+            }
+            else
+            {
+                image.rectTransform.localPosition = GetItemOffset(item);
+            }
 
             _items.Add(item, image);
         }
@@ -234,12 +241,74 @@ namespace Endure.Inventory
             _imagePool.Recycle(image);
         }
 
-        public Vector2 GetItemOffset(IInventoryItem item)
+        internal Vector2 GetItemOffset(IInventoryItem item)
         {
             float x = (-(_inventory.Width * 0.5f) + item.Position.x + item.Width * 0.5f) * _cellSize.x;
             float y = (-(_inventory.Height * 0.5f) + item.Position.y + item.Height * 0.5f) * _cellSize.y;
 
             return new Vector2(x, y);
+        }
+
+        public void SetInventory(IInventoryManager inventoryManager, InventoryRenderMode renderMode)
+        {
+            OnDisable();
+
+            _inventory = inventoryManager ?? throw new ArgumentNullException(nameof(inventoryManager));
+
+            _renderMode = renderMode;
+
+            OnEnable();
+        }
+
+        public void ClearSelection()
+        {
+            for (var i = 0; i < _grids.Length; i++)
+            {
+                _grids[i].sprite = _cellSpriteEmpty;
+                _grids[i].color = Color.white;
+            }
+        }
+
+        public void SelectItem(IInventoryItem item, bool blocked, Color color)
+        {
+            if (item == null) return;
+
+            ClearSelection();
+
+            switch (_renderMode)
+            {
+                case InventoryRenderMode.Single:
+                {
+                    _grids[0].sprite = blocked ? _cellSpriteBlocked : _cellSpriteSelected;
+                    _grids[0].color = color;
+
+                    break;
+                }
+
+                default:
+                {
+                    for (var x = 0; x < item.Width; x++)
+                    {
+                        for (var y = 0; y < item.Height; y++)
+                        {
+                            if (item.IsPartOfShape(new Vector2Int(x, y)))
+                            {
+                                var p = item.Position + new Vector2Int(x, y);
+
+                                if (p.x >= 0 && p.x < _inventory.Width && p.y >= 0 && p.y < _inventory.Height)
+                                {
+                                    var index = p.y * _inventory.Width + (_inventory.Width - 1 - p.x);
+
+                                    _grids[index].sprite = blocked ? _cellSpriteBlocked : _cellSpriteSelected;
+                                    _grids[index].color = color;
+                                }
+                            }
+                        }
+                    }
+
+                    break;
+                }
+            }
         }
     }
 }

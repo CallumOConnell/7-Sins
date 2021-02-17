@@ -1,7 +1,10 @@
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public interface IInventoryProvider
     {
+        // Returns the render mode of this inventory
+        InventoryRenderMode InventoryRenderMode { get; }
+
         // Returns the total amount of inventory items in the current inventory.
         int InventoryItemCount { get; }
 

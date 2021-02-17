@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace Endure.Inventory
+namespace Sins.Inventory
 {
     public class InventoryManager : IInventoryManager
     {
@@ -15,7 +15,7 @@ namespace Endure.Inventory
         public int Width => _size.x;
         public int Height => _size.y;
 
-        public bool isFull
+        public bool IsFull
         {
             get
             {
@@ -45,11 +45,6 @@ namespace Endure.Inventory
         public Action<IInventoryItem> OnItemAdded { get; set; }
         public Action<IInventoryItem> OnItemAddedFailed { get; set; }
         public Action<IInventoryItem> OnItemRemoved { get; set; }
-        public Action OnRebuild { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public IInventoryItem[] Items => throw new NotImplementedException();
-
-        public bool IsFull => throw new NotImplementedException();
 
         public InventoryManager(IInventoryProvider provider, int width, int height)
         {
@@ -83,7 +78,7 @@ namespace Endure.Inventory
 
         public void Rebuild() => Rebuild(false);
 
-        public void Dipose()
+        public void Dispose()
         {
             _provider = null;
             AllItems = null;
@@ -91,6 +86,11 @@ namespace Endure.Inventory
 
         public IInventoryItem GetAtPoint(Vector2Int point)
         {
+            if (_provider.InventoryRenderMode == InventoryRenderMode.Single && _provider.IsInventoryFull && AllItems.Length > 0)
+            {
+                return AllItems[0];
+            }
+
             foreach (var item in AllItems)
             {
                 if (item.Contains(point))
@@ -151,9 +151,14 @@ namespace Endure.Inventory
 
         public bool CanAddAt(IInventoryItem item, Vector2Int point)
         {
-            if (_provider.CanAddInventoryItem(item) || _provider.IsInventoryFull)
+            if (!_provider.CanAddInventoryItem(item) || _provider.IsInventoryFull)
             {
                 return false;
+            }
+
+            if (_provider.InventoryRenderMode == InventoryRenderMode.Single)
+            {
+                return true;
             }
 
             var previousPoint = item.Position;
@@ -190,7 +195,27 @@ namespace Endure.Inventory
                 return false;
             }
 
-            item.Position = point;
+            switch (_provider.InventoryRenderMode)
+            {
+                case InventoryRenderMode.Single:
+                {
+                    item.Position = GetCentrePosition(item);
+
+                    break;
+                }
+
+                case InventoryRenderMode.Grid:
+                {
+                    item.Position = point;
+
+                    break;
+                }
+
+                default:
+                {
+                    throw new NotImplementedException($"InventoryRenderMode.{_provider.InventoryRenderMode} has not been implemented");
+                }
+            }
 
             Rebuild(true);
 
@@ -201,9 +226,7 @@ namespace Endure.Inventory
 
         public bool CanAdd(IInventoryItem item)
         {
-            Vector2Int point;
-
-            if (!Contains(item) && GetFirstPointThatFitsItem(item, out point))
+            if (!Contains(item) && GetFirstPointThatFitsItem(item, out Vector2Int point))
             {
                 return CanAddAt(item, point);
             }
@@ -215,12 +238,10 @@ namespace Endure.Inventory
         {
             if (!CanAdd(item)) return false;
 
-            Vector2Int point;
-
-            return GetFirstPointThatFitsItem(item, out point) && TryAddAt(item, point);
+            return GetFirstPointThatFitsItem(item, out Vector2Int point) && TryAddAt(item, point);
         }
 
-        public bool CanSwap(IInventoryItem item) => DoesItemFit(item) && _provider.CanAddInventoryItem(item);
+        public bool CanSwap(IInventoryItem item) => _provider.InventoryRenderMode == InventoryRenderMode.Single && DoesItemFit(item) && _provider.CanAddInventoryItem(item);
 
         public void DropAll()
         {
@@ -317,86 +338,6 @@ namespace Endure.Inventory
         private bool DoesItemFit(IInventoryItem item) => item.Width <= Width && item.Height <= Height;
 
         // Returns the centre postition for a given item within this inventory
-        private Vector2Int GetCentrePosition(IInventoryItem item) => new Vector2Int(_size.x / item.Width / 2, _size.y / item.Height / 2);
-
-        public bool InventoryContainsItem(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanAddItemToInventory(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryAddItemToInventory(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanAddItemAtPoint(IInventoryItem item, Vector2Int point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryAddItemAtPoint(IInventoryItem item, Vector2Int point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanRemoveItemFromInventory(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanSwapItem(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool TryRemoveItem(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool CanDropItem(IInventoryItem item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DropAllItemsFromInventory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ClearInventory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RebuildInventory()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ResizeInventory(int width, int height)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IInventoryItem GetItemAtPoint(Vector2Int point)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IInventoryItem[] GetItemsAtPoint(Vector2Int point, Vector2Int size)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
+        private Vector2Int GetCentrePosition(IInventoryItem item) => new Vector2Int(_size.x - item.Width / 2, _size.y - item.Height / 2);
     }
 }
