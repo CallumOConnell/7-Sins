@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using Sins.Interaction;
 
 namespace Sins.Player
 {
