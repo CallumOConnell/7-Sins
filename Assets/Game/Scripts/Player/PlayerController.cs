@@ -8,9 +8,6 @@ namespace Sins.Player
     public class PlayerController : MonoBehaviour
     {
         [SerializeField]
-        private GameObject _player;
-
-        [SerializeField]
         private Camera _camera;
 
         [SerializeField]
