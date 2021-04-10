@@ -2,7 +2,7 @@
 using UnityEngine.AI;
 using Sins.Interaction;
 
-namespace Sins.Player
+namespace Sins.Character
 {
     [RequireComponent(typeof(NavMeshAgent))]
     public class PlayerController : MonoBehaviour
@@ -23,7 +23,7 @@ namespace Sins.Player
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0)) // Left mouse button
+            if (Input.GetMouseButton(0)) // Left mouse button
             {
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
