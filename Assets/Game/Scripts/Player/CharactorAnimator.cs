@@ -10,7 +10,7 @@ namespace Sins.Character
 
         private NavMeshAgent _agent;
 
-        private const float _locomationAnimationSmoothTime = 0.05f;
+        private const float _locomationAnimationSmoothTime = 0.02f;
 
         private void Awake() => _agent = GetComponent<NavMeshAgent>();
 
