@@ -1879,6 +1879,7 @@ public class Generator : MonoBehaviour
         if(player != null)
         { 
             player = Instantiate(Player, PlayerSpawnRoom.transform.position, Quaternion.identity, gameObject.transform);
+            player.GetComponentInChildren<NavMeshAgent>().Warp(PlayerSpawnRoom.transform.position);
         }
 
         if(bosses.Count > 0)
