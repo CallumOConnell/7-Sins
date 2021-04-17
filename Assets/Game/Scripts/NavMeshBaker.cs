@@ -1,22 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class NavMeshBaker : MonoBehaviour
 {
-    
-    [SerializeField]
-    NavMeshSurface[] navMeshSurfaces;
+    private NavMeshSurface[] _navMeshSurfaces;
 
-    void Awake()
+    private void Awake()
     {
-    
-        for(int i = 0; i < navMeshSurfaces.Length; i++)
+        _navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
+
+        foreach (var surface in _navMeshSurfaces)
         {
-            navMeshSurfaces[i].BuildNavMesh();
+            surface.BuildNavMesh();
         }
-
     }
-
 }
