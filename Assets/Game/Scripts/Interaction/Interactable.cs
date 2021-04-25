@@ -13,13 +13,13 @@ namespace Sins.Interaction
 
         public float Radius { get => _radius; set => _radius = value; }
 
-        private void OnDrawGizmosSelected()
+        private void OnDrawGizmosSelected() // Debug for displaying the radius around an interactable
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _radius);
         }
 
-        private void Update()
+        public virtual void Update()
         {
             if (isFocus && !hasInteracted)
             {
@@ -27,7 +27,7 @@ namespace Sins.Interaction
 
                 if (distance <= _radius)
                 {
-                    Debug.Log("Interact");
+                    Interact();
 
                     hasInteracted = true;
                 }

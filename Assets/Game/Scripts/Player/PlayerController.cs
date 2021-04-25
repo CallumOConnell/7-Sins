@@ -19,44 +19,49 @@ namespace Sins.Character
 
         private Interactable _focus;
 
+        public bool MovementLocked { get; set; }
+
         private void Awake() => _agent = GetComponent<NavMeshAgent>();
 
         private void Update()
         {
-            if (Input.GetMouseButton(0)) // Left mouse button
+            if (!MovementLocked)
             {
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, 100, _groundLayer))
+                if (Input.GetMouseButton(0)) // Left mouse button
                 {
-                    _agent.SetDestination(hit.point);
+                    var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                    RemoveFocus();
-                }
-            }
-
-            if (Input.GetMouseButtonDown(1)) // Right mouse button
-            {
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit, 100))
-                {
-                    Interactable interactable = hit.collider.GetComponent<Interactable>();
-
-                    if (interactable != null)
+                    if (Physics.Raycast(ray, out RaycastHit hit, 100, _groundLayer))
                     {
-                        SetFocus(interactable);
+                        _agent.SetDestination(hit.point);
+
+                        RemoveFocus();
                     }
-
-                    _agent.SetDestination(hit.point);
                 }
-            }
 
-            if (_target != null)
-            {
-                _agent.SetDestination(_target.position);
+                if (Input.GetMouseButtonDown(1)) // Right mouse button
+                {
+                    var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                FaceTarget();
+                    if (Physics.Raycast(ray, out RaycastHit hit, 100))
+                    {
+                        Interactable interactable = hit.collider.GetComponent<Interactable>();
+
+                        if (interactable != null)
+                        {
+                            SetFocus(interactable);
+                        }
+
+                        _agent.SetDestination(hit.point);
+                    }
+                }
+
+                if (_target != null)
+                {
+                    _agent.SetDestination(_target.position);
+
+                    FaceTarget();
+                }
             }
         }
 
@@ -91,7 +96,7 @@ namespace Sins.Character
 
         private void FollowTarget(Interactable newTarget)
         {
-            _agent.stoppingDistance = newTarget.Radius * .8f;
+            _agent.stoppingDistance = newTarget.Radius * 0.8f;
             _agent.updateRotation = false;
 
             _target = newTarget.transform;
@@ -109,7 +114,7 @@ namespace Sins.Character
         {
             var direction = (_target.position - transform.position).normalized;
 
-            var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
         }

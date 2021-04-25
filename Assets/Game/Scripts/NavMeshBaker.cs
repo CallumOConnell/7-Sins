@@ -5,7 +5,7 @@ public class NavMeshBaker : MonoBehaviour
 {
     private NavMeshSurface[] _navMeshSurfaces;
 
-    private void Awake()
+    private void Start()
     {
         _navMeshSurfaces = FindObjectsOfType<NavMeshSurface>();
 
