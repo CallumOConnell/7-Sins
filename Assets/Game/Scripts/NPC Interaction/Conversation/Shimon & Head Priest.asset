@@ -16,11 +16,35 @@ MonoBehaviour:
   speakerRight: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
   lines:
   - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
-    text: Good day Shimon, I have a task for you.
+    text: Shimon, I require your assistance with a task.
   - character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
-    text: Yes Father what task are you setting me today.
+    text: What might be the issue Father?
   - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
-    text: The 7 Sin artifacts have been stolen from the Chruches archives and we
-      need you to retrieve them for us before the world is sent to chaos
+    text: With the current state of the world and the split in factions, another
+      threat has risen. The Sins artifacts have been stolen from the church archives.
   - character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
-    text: Father are you sure I am worthy of such task.
+    text: How did someone get into the archives? The location is meant to be a secreat
+      and only a select few people know its where abouts.
+  - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    text: The details are still yet to be made clear but all we know is that weneed
+      to get the artifacts before they end up in the wrong hands.
+  - character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    text: And what is the reason you are telling me Father?
+  - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    text: I want to task you with regaining the artifacts before the world falls
+      further into chaos. Your experience with combat far excels anyone in the church
+      and your loyalty to the holy church is unwavering.
+  - character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    text: I vowed to never fight again not after what i went through with the countless
+      wars I have fought in.
+  - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    text: Your skills are unmatched Shimon, the church begs of you to help us retrive
+      the artifacts.
+  - character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    text: I understand Father, I truly am honored to be tasked with such a request
+      as much as morally I no longer want to inflict pain on others if this is to
+      prevent even more chaos I will do my best to help.
+  - character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    text: Bless you Shimon, truly you are the best choice for this task. There is
+      a priest that wishes to speak to you, he waits in the courtyard please speak
+      to him before leaving.

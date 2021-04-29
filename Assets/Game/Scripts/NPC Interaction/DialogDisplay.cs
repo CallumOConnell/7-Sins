@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sins.Interaction;
+using Sins.Character;
 
 
 public class DialogDisplay : Interactable
@@ -40,6 +41,8 @@ public class DialogDisplay : Interactable
      
         base.Update();
 
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+
         if(isInteracting == true)
         {
 
@@ -47,6 +50,14 @@ public class DialogDisplay : Interactable
             {
                 AdvanceConversation();
             }
+        }
+
+        if (distance >= Radius || isInteracting == false)
+        {
+
+            DialogueScreen.SetActive(false); 
+
+            isInteracting = false;
         }
 
     }
@@ -64,6 +75,8 @@ public class DialogDisplay : Interactable
 
             isInteracting = true;
 
+            player.GetComponent<PlayerController>().MovementLocked = true;
+
         }
 
     }
@@ -79,6 +92,8 @@ public class DialogDisplay : Interactable
             speakerUILeft.Hide();    
             speakerUIRight.Hide();
             activeLineIndex = 0;
+            isInteracting = false;
+            player.GetComponent<PlayerController>().MovementLocked = false;
         }
 
     }
