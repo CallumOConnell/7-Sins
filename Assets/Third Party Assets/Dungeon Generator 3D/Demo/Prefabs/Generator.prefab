@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5325869983140188781}
   - component: {fileID: 230163865767644395}
-  - component: {fileID: 132472723265419003}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -45,15 +44,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationSettings: {fileID: 11400000, guid: 1a976e4400faa1644be6c249c2e76f9b, type: 2}
---- !u!114 &132472723265419003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6506916950427871203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4c8ed0994c98f4b9125d259bd3d032, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

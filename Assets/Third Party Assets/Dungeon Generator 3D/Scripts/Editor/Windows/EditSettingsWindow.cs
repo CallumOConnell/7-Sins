@@ -214,6 +214,9 @@ public class EditSettingsWindow : EditorWindow
 
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUIStyle.none, GUI.skin.verticalScrollbar);
 
+        DrawProperties(ref currentProperty, true);
+
+        /*
         if (m_categories != null)
         {
             DrawProperties(ref currentProperty, true);
@@ -222,6 +225,7 @@ public class EditSettingsWindow : EditorWindow
         {
             EditorGUILayout.LabelField("Select a tab from the list");
         }
+        */
 
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
