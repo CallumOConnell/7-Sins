@@ -122,7 +122,7 @@ public class Generator : MonoBehaviour
 
     private void GetGenerationSettings()
     {
-        Data settings;
+        GenerationData settings;
         settings = GenerationSettings.generation;
 
         minRooms = settings.minRooms;
@@ -1447,7 +1447,6 @@ public class Generator : MonoBehaviour
     {
         //Check if Right and Left side of floor have walls
         int number;
-        int extraRotation = 0;
 
         //Always check if it is null first before trying to get the tag of the object.
         if (CheckNullAndTag("Floor", false, area[a + 1, b], area[a - 1, b]))
@@ -1874,6 +1873,9 @@ public class Generator : MonoBehaviour
 
     private void SpawnEntities()
     {
+        // Builds nav mesh before player spawns
+        GetComponent<NavMeshSurface>().BuildNavMesh();
+
         DestroyImmediate(PlayerSpawnRoom.gameObject.GetComponent<BoxCollider>());
 
         if(player != null)

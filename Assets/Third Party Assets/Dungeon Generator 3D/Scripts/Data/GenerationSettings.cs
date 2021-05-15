@@ -6,11 +6,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Generation Settings")]
 public class GenerationSettings : ScriptableObject
 {
-    [SerializeField] public Data generation;
+    [SerializeField] public GenerationData generation;
 }
 
 [Serializable]
-public class Data
+public class GenerationData
 {
     [SerializeField] public int minRooms;
     [SerializeField] public int maxRooms;
