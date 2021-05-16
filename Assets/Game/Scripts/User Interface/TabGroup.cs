@@ -29,9 +29,6 @@ namespace Sins.UI
         [SerializeField]
         private Sprite _tabActiveSprite;
 
-        [SerializeField]
-        private PanelGroup _panelGroup;
-
         private List<TabButton> _tabButtons = new List<TabButton>();
 
         private TabButton _selectedTab;
@@ -110,11 +107,6 @@ namespace Sins.UI
                 {
                     _tabPages[i].SetActive(false);
                 }
-            }
-
-            if (_panelGroup != null)
-            {
-                _panelGroup.SetPageIndex(button.transform.GetSiblingIndex());
             }
         }
 

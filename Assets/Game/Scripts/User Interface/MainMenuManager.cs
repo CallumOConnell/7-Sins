@@ -9,14 +9,20 @@ namespace Sins.UI
         private GameObject _homePanel;
 
         [SerializeField]
-        private GameObject _optionsPanel;
+        private CanvasGroup _optionsPanel;
+
+        [SerializeField]
+        private TabGroup _tabGroup;
 
         public void PlayGame() => SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
 
         public void OpenOptionsMenu()
         {
             _homePanel.SetActive(false);
-            _optionsPanel.SetActive(true);
+            _optionsPanel.alpha = 1f;
+            _optionsPanel.interactable = true;
+            _optionsPanel.blocksRaycasts = true;
+            _tabGroup.Initialise();
         }
 
         public void QuitGame() => Application.Quit();

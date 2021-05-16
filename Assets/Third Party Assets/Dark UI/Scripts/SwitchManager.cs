@@ -1,104 +1,59 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 namespace Michsky.UI.Dark
 {
-    public class SwitchManager : MonoBehaviour
+    public class SwitchManager : MonoBehaviour, IPointerDownHandler
     {
-        [Header("SETTINGS")]
-        [Tooltip("IMPORTANT! EVERY SWITCH MUST HAVE A DIFFERENT TAG")]
-        public string switchTag = "Switch";
-        public bool isOn = true;
-        public bool saveValue = true;
-        public bool invokeAtStart = true;
+        public bool State { get; private set; }
 
-        public UnityEvent OnEvents;
-        public UnityEvent OffEvents;
+        [System.Serializable]
+        public class UnityEventBool : UnityEvent<bool> { }
 
-        Animator switchAnimator;
-        Button switchButton;
+        public UnityEventBool OnValueChanged;
 
-        void Start()
+        private Animator _animator;
+
+        private void OnEnable()
         {
-            switchAnimator = gameObject.GetComponent<Animator>();
-            switchButton = gameObject.GetComponent<Button>();
-            switchButton.onClick.AddListener(AnimateSwitch);
+            var state = PlayerPrefs.GetInt(gameObject.name + "Switch", 0) == 1;
 
-            if (saveValue == true)
-            {
-                if (PlayerPrefs.GetString(switchTag + "Switch") == "")
-                {
-                    if (isOn == true)
-                    {
-                        switchAnimator.Play("Switch On");
-                        isOn = true;
-                        PlayerPrefs.SetString(switchTag + "Switch", "true");
-                    }
-
-                    else
-                    {
-                        switchAnimator.Play("Switch Off");
-                        isOn = false;
-                        PlayerPrefs.SetString(switchTag + "Switch", "false");
-                    }
-                }
-
-                else if (PlayerPrefs.GetString(switchTag + "Switch") == "true")
-                {
-                    switchAnimator.Play("Switch On");
-                    isOn = true;
-                }
-
-                else if (PlayerPrefs.GetString(switchTag + "Switch") == "false")
-                {
-                    switchAnimator.Play("Switch Off");
-                    isOn = false;
-                }
-            }
-
-            else
-            {
-                if (isOn == true)
-                {
-                    switchAnimator.Play("Switch On");
-                    isOn = true;
-                }
-
-                else
-                {
-                    switchAnimator.Play("Switch Off");
-                    isOn = false;
-                }
-            }
-
-            if (invokeAtStart == true && isOn == true)
-                OnEvents.Invoke();
-            if (invokeAtStart == true && isOn == false)
-                OffEvents.Invoke();
+            Toggle(state);
         }
 
-        public void AnimateSwitch()
+        private void Awake()
         {
-            if (isOn == true)
+            _animator = GetComponent<Animator>();
+
+            var state = PlayerPrefs.GetInt(gameObject.name + "Switch", 0) == 1;
+
+            Toggle(state);
+        }
+
+        private void Toggle(bool value)
+        {
+            State = value;
+
+            OnValueChanged.Invoke(value);
+
+            if (value)
             {
-                switchAnimator.Play("Switch Off");
-                isOn = false;
-                OffEvents.Invoke();
+                _animator.Play("Switch On");
 
-                if (saveValue == true)
-                    PlayerPrefs.SetString(switchTag + "Switch", "false");
+                PlayerPrefs.SetInt(gameObject.name + "Switch", 1);
             }
-
             else
             {
-                switchAnimator.Play("Switch On");
-                isOn = true;
-                OnEvents.Invoke();
+                _animator.Play("Switch Off");
 
-                if (saveValue == true)
-                    PlayerPrefs.SetString(switchTag + "Switch", "true");
+                PlayerPrefs.SetInt(gameObject.name + "Switch", 0);
             }
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            Toggle(!State);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -24,30 +25,31 @@ namespace Sins.UI
         [SerializeField]
         private Slider _uiSlider;
 
+        [SerializeField]
+        private TextMeshProUGUI _masterText;
+
+        [SerializeField]
+        private TextMeshProUGUI _musicText;
+
+        [SerializeField]
+        private TextMeshProUGUI _effectsText;
+
+        [SerializeField]
+        private TextMeshProUGUI _uiText;
+
         [Header("Resolution"), Space]
 
         [SerializeField]
-        private Dropdown _resolutionDropDown;
+        private TMP_Dropdown _resolutionDropDown;
 
         private Resolution[] _resolutions;
 
         private void Start()
         {
-            var masterVolume = Mathf.Log10(PlayerPrefs.GetFloat("MasterVolume")) * 20;
-
-            _masterMixer.SetFloat("Master", masterVolume);
-
-            var musicVolume = Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20;
-
-            _masterMixer.SetFloat("Music", musicVolume);
-
-            var sfxVolume = Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume")) * 20;
-
-            _masterMixer.SetFloat("SFX", sfxVolume);
-
-            var uiVolume = Mathf.Log10(PlayerPrefs.GetFloat("UIVolume")) * 20;
-
-            _masterMixer.SetFloat("UI", uiVolume);
+            _masterSlider.value = PlayerPrefs.GetFloat("MasterVolumeSliderPosition", 1);
+            _musicSlider.value = PlayerPrefs.GetFloat("MusicVolumeSliderPosition", 1);
+            _sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumeSliderPosition", 1);
+            _uiSlider.value = PlayerPrefs.GetFloat("UIVolumeSliderPosition", 1);
 
             _resolutions = Screen.resolutions;
 
@@ -78,7 +80,7 @@ namespace Sins.UI
         {
             PlayerPrefs.SetFloat(name + "VolumeSliderPosition", value);
 
-            float volume = Mathf.Log10(value) * 20;
+            var volume = Mathf.Log10(value) * 20;
 
             _masterMixer.SetFloat(name, volume);
 
@@ -126,7 +128,7 @@ namespace Sins.UI
 
         public void SetAntiAlisasingQuality(int index)
         {
-            QualitySettings.antiAliasing = index;
+            QualitySettings.antiAliasing = index; // Value between 2 and 8 and disabled option.
         }
 
         public void SetShadowResolutionQuality(int index)
@@ -195,19 +197,14 @@ namespace Sins.UI
             QualitySettings.shadowCascades = index;
         }
 
-        public void SetSoftParticleQuality(bool state)
+        public void SetSoftParticleQuality(int index)
         {
-            QualitySettings.softParticles = state;
+            QualitySettings.softParticles = index == 1;
         }
 
-        public void SetReflectionQuality(bool state)
+        public void SetReflectionQuality(int index)
         {
-            QualitySettings.realtimeReflectionProbes = state;
-        }
-
-        public void SetQualityPreset(int index)
-        {
-            QualitySettings.SetQualityLevel(index);
+            QualitySettings.realtimeReflectionProbes = index == 1;
         }
 
         public void SetAnisotropicFilteringQuality(int index)
@@ -238,21 +235,29 @@ namespace Sins.UI
         public void SetMasterVolume(float value)
         {
             SetVolume("Master", value);
+
+            _masterText.text = value.ToString("F1");
         }
 
         public void SetMusicVolume(float value)
         {
             SetVolume("Music", value);
+
+            _musicText.text = value.ToString("F1");
         }
 
         public void SetSFXVolume(float value)
         {
             SetVolume("SFX", value);
+
+            _effectsText.text = value.ToString("F1");
         }
 
         public void SetUIVolume(float value)
         {
             SetVolume("UI", value);
+
+            _uiText.text = value.ToString("F1");
         }
     }
 }
