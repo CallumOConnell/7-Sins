@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 58d65e11d7f82124a924978745afc9f2, type: 3}
-  m_Name: Shimon
+  m_Name: Pope
   m_EditorClassIdentifier: 
-  fullName: Shimon
-  portrait: {fileID: 21300000, guid: 3537fc7e6324fc647a90b362f86203fa, type: 3}
+  Name: Pope
+  Portrait: {fileID: 21300000, guid: e33c28430c1d5604b9e063500e4f9ca7, type: 3}
