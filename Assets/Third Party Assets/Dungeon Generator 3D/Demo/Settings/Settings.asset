@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Settings
   m_EditorClassIdentifier: 
   generation:
-    minRooms: 10
-    maxRooms: 15
+    minRooms: 25
+    maxRooms: 30
     amountOfAdjacentRoomsToConnect: 3
-    minRoomWidth: 8
-    maxRoomWidth: 12
+    minRoomWidth: 4
+    maxRoomWidth: 8
     minRoomHeight: 8
     maxRoomHeight: 12
     minBossRoomWidth: 10
     maxBossRoomWidth: 12
     minBossRoomHeight: 10
     maxBossRoomHeight: 12
-    areaWidth: 100
-    areaHeight: 100
+    areaWidth: 75
+    areaHeight: 75
     minDistanceBetweenRooms: 1
     walls:
     - gameObject: {fileID: 2080704801994423525, guid: 924e6870bde15034d9e5747b609daa18, type: 3}
@@ -52,7 +52,19 @@ MonoBehaviour:
     enemies: []
     bosses: []
     breakables: []
-    staticObjects: []
+    staticObjects:
+    - gameObject: {fileID: 1942952682, guid: 38666585e7877f14b9aba360fdf00dba, type: 3}
+      name: Barrel_1
+    - gameObject: {fileID: 1470382891, guid: 8c4be196c40e99d4eb63ecfbc7f1abba, type: 3}
+      name: Barrel_2
+    - gameObject: {fileID: 1489629583498642614, guid: be6be0b19c7224d4cbec8bb57a4d7b9a, type: 3}
+      name: Rectangle Box
+    - gameObject: {fileID: 2853573975186051655, guid: 251c8624e01c15b468d2b8804159d173, type: 3}
+      name: Square Box
+    - gameObject: {fileID: 117426, guid: 2813f18062e255a4aa5723d7a214a18c, type: 3}
+      name: Cage
+    - gameObject: {fileID: 1000014188511100, guid: 5dcae5adf53292945adef517afe8041e, type: 3}
+      name: Treasure Chest
     wallObjects: []
     wallObjConsequitiveDistance: 0
     wallObjDisplacements: []
