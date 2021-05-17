@@ -24,10 +24,10 @@ namespace Michsky.UI.Dark
                 splashScreenAnimator.Play("Splash Out");
                 mainPanels.SetActive(true);
 
-                mainPanelsAnimator = mainPanels.GetComponent<Animator>();
-                mainPanelsAnimator.Play("Splash Disabled");
-                homePanelAnimator = homePanel.GetComponent<Animator>();
-                homePanelAnimator.Play("Panel In");
+                //mainPanelsAnimator = mainPanels.GetComponent<Animator>();
+                //mainPanelsAnimator.Play("Splash Disabled");
+                //homePanelAnimator = homePanel.GetComponent<Animator>();
+                //homePanelAnimator.Play("Panel In");
             }
 
             else

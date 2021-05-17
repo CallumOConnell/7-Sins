@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,33 +6,36 @@ namespace Michsky.UI.Dark
 {
     public class TimedEvent : MonoBehaviour
     {
-        [Header("TIMING (SECONDS)")]
-        public float timer = 4;
-        public bool enableAtStart;
+        [SerializeField]
+        private float _timer = 4;
 
-        [Header("TIMER EVENT")]
-        public UnityEvent timerAction;
+        [SerializeField]
+        private bool _enableAtStart;
 
-        void Start()
+        [SerializeField]
+        private UnityEvent _timerAction;
+
+        private void Start()
         {
-            if(enableAtStart == true)
+            if (_enableAtStart)
             {
                 StartCoroutine("TimedEventStart");
             }
         }
 
-        IEnumerator TimedEventStart()
+        private IEnumerator TimedEventStart()
         {
-            yield return new WaitForSeconds(timer);
-            timerAction.Invoke();
+            yield return new WaitForSeconds(_timer);
+
+            _timerAction.Invoke();
         }
 
-        public void StartIEnumerator ()
+        public void StartIEnumerator()
         {
             StartCoroutine("TimedEventStart");
         }
 
-        public void StopIEnumerator ()
+        public void StopIEnumerator()
         {
             StopCoroutine("TimedEventStart");
         }
