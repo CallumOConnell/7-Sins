@@ -982,11 +982,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 10
-  player: {fileID: 2103578732}
-  DialogueScreen: {fileID: 1025603793}
-  speakerLeft: {fileID: 2047762991}
-  speakerRight: {fileID: 855351421}
-  conversation: {fileID: 11400000, guid: f9bb4b99daa729548a706b524b9453e8, type: 2}
+  _player: {fileID: 2103578732}
+  _dialogueScreen: {fileID: 1025603793}
+  _speakerLeft: {fileID: 2047762991}
+  _speakerRight: {fileID: 855351421}
+  _conversation: {fileID: 11400000, guid: f9bb4b99daa729548a706b524b9453e8, type: 2}
 --- !u!208 &116458127
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -2075,7 +2075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &277895550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6926,7 +6926,7 @@ GameObject:
   - component: {fileID: 855351422}
   - component: {fileID: 855351423}
   m_Layer: 5
-  m_Name: Speaker Right
+  m_Name: Speaker_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6968,9 +6968,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bc5a9975605694180136ae1a152582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 1158745746}
-  fullName: {fileID: 1544633334}
-  dialog: {fileID: 742395568}
+  _portrait: {fileID: 1158745746}
+  _nameText: {fileID: 1544633334}
+  _dialogueText: {fileID: 742395568}
 --- !u!1 &856115251 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -1438915735686313034, guid: e1ed33624aac4e44aa2fadc16b5441a9, type: 3}
@@ -8716,7 +8716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1025603794}
   m_Layer: 5
-  m_Name: Dialogue Menu
+  m_Name: Dialogue_Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16368,7 +16368,7 @@ GameObject:
   - component: {fileID: 2047762992}
   - component: {fileID: 2047762993}
   m_Layer: 5
-  m_Name: Speaker Left
+  m_Name: Speaker_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16410,9 +16410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80bc5a9975605694180136ae1a152582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portrait: {fileID: 1118392227}
-  fullName: {fileID: 485237931}
-  dialog: {fileID: 1235847256}
+  _portrait: {fileID: 1118392227}
+  _nameText: {fileID: 485237931}
+  _dialogueText: {fileID: 1235847256}
 --- !u!1 &2070073741
 GameObject:
   m_ObjectHideFlags: 0
