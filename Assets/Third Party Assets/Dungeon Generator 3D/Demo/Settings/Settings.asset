@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generation:
     minRooms: 25
-    maxRooms: 30
+    maxRooms: 32
     amountOfAdjacentRoomsToConnect: 3
     minRoomWidth: 4
     maxRoomWidth: 8
@@ -67,7 +67,7 @@ MonoBehaviour:
       name: Cage
     wallObjects:
     - gameObject: {fileID: 164718, guid: f990a7f182be91b41b7167bc5fdff7eb, type: 3}
-      name: torch
+      name: Torch
     wallObjConsequitiveDistance: 70
     wallObjDisplacements:
     - {x: 0, y: 0.1, z: 0}
@@ -84,6 +84,4 @@ MonoBehaviour:
       name: Cage
     - gameObject: {fileID: 106920, guid: 5c63ee1e94a9a014da2292f3dbf7b19a, type: 3}
       name: Basket
-    - gameObject: {fileID: 0}
-      name: 
-    middleObjectsRate: 20
+    middleObjectsRate: 100

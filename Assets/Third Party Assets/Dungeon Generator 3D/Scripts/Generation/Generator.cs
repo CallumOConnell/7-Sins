@@ -381,7 +381,7 @@ public class Generator : MonoBehaviour
         DoubleCheckCorners();
 
         GenerateDoors();
-        
+
         GenerateContent();
 
         DoubleCheckRoomCorners();
@@ -794,7 +794,7 @@ public class Generator : MonoBehaviour
 
     private void CreateCorridor(int corridor, bool calculateNext, bool isFirstTime, Transform target, Transform startPoint)
     {
-        GameObject corridorFloor;
+        GameObject corridorFloor = null;
 
         //Only does this the first time
         if (isFirstTime)
@@ -835,27 +835,45 @@ public class Generator : MonoBehaviour
                 string[] tempStringArray = tempString.Split(floorRemovables, System.StringSplitOptions.RemoveEmptyEntries);
 
                 //Make a parent object for corridor which is child of room
-                int tempIntY = int.Parse(tempStringArray[1]) + additive;
-                int tempIntX = int.Parse(tempStringArray[0]);
+                //int tempIntY = int.Parse(tempStringArray[1]) + additive;
+                //int tempIntX = int.Parse(tempStringArray[0]);
 
-                int randomFloor = Random.Range(0, flooring.Count);
-                corridorFloor = Instantiate(flooring[randomFloor].gameObject, new Vector3(startPoint.position.x, 0, startPoint.position.z + additive), Quaternion.identity); 
-                //Name corridor floor
-                corridorFloor.name = "Floor (" + tempIntX + ", " + tempIntY + ")";
+                var test1 = int.TryParse(tempStringArray[1], out var tempIntY);
+                var test2 = int.TryParse(tempStringArray[0], out var tempIntX);
 
-                //Set parent to be corridor parent object
-                corridorFloor.transform.SetParent(corridors[corridorNumber].transform);
-
-                if (area[tempIntX, tempIntY] != null)
+                if (test1 && test2)
                 {
-                    DestroyImmediate(corridorFloor);
-                    corridorFloor = area[tempIntX, tempIntY];
-                }
-                else
-                {
-                    area[tempIntX, tempIntY] = corridorFloor;
-                }
+                    tempIntY += additive;
 
+                    int randomFloor = Random.Range(0, flooring.Count);
+
+                    var floor = flooring[randomFloor].gameObject;
+
+                    if (floor != null)
+                    {
+                        corridorFloor = Instantiate(floor, new Vector3(startPoint.position.x, 0, startPoint.position.z + additive), Quaternion.identity);
+                        // Name corridor floor
+                        corridorFloor.name = $"Floor ({tempIntX}, {tempIntY})";
+                    }
+
+                    // Set parent to be corridor parent object
+                    var corridorTransform = corridors[corridorNumber].transform;
+
+                    if (corridorTransform != null)
+                    {
+                        corridorFloor.transform.SetParent(corridorTransform);
+                    }
+
+                    if (area[tempIntX, tempIntY] != null)
+                    {
+                        DestroyImmediate(corridorFloor);
+                        corridorFloor = area[tempIntX, tempIntY];
+                    }
+                    else
+                    {
+                        area[tempIntX, tempIntY] = corridorFloor;
+                    }
+                }
             } while (corridorFloor.transform.position.z != target.position.z);
 
 
@@ -1879,7 +1897,7 @@ public class Generator : MonoBehaviour
         DestroyImmediate(PlayerSpawnRoom.gameObject.GetComponent<BoxCollider>());
 
         if(player != null)
-        { 
+        {
             player = Instantiate(Player, PlayerSpawnRoom.transform.position, Quaternion.identity, gameObject.transform);
         }
 
@@ -2069,35 +2087,40 @@ public class Generator : MonoBehaviour
         string tempString = obj.name;
         string[] tempStringArray = tempString.Split(floorRemovables, System.StringSplitOptions.RemoveEmptyEntries);
 
-        int tempIntY = int.Parse(tempStringArray[1]);
-        int tempIntX = int.Parse(tempStringArray[0]);
+        var test1 = int.TryParse(tempStringArray[1], out var tempIntY);
+        var test2 = int.TryParse(tempStringArray[0], out var tempIntX);
 
-        if(area[tempIntX, tempIntY + 1].CompareTag("Floor"))
+        if (test1 && test2)
         {
-            additive += 1;    
+            if (area[tempIntX, tempIntY + 1].CompareTag("Floor"))
+            {
+                additive += 1;
+            }
+
+            if (area[tempIntX, tempIntY - 1].CompareTag("Floor"))
+            {
+                additive += 1;
+            }
+
+            if (area[tempIntX + 1, tempIntY].CompareTag("Floor"))
+            {
+                additive += 1;
+            }
+
+            if (area[tempIntX - 1, tempIntY].CompareTag("Floor"))
+            {
+                additive += 1;
+            }
+
+            if (additive > maxSurroundings)
+            {
+                return new Vector3Int(0, 0, 0);
+            }
+
+            return new Vector3Int(1, tempIntX, tempIntY);
         }
 
-        if (area[tempIntX, tempIntY - 1].CompareTag("Floor"))
-        {
-            additive += 1;
-        }
-
-        if (area[tempIntX + 1, tempIntY].CompareTag("Floor"))
-        {
-            additive += 1;
-        }
-
-        if (area[tempIntX - 1, tempIntY].CompareTag("Floor"))
-        {
-            additive += 1;
-        }
-
-        if(additive > maxSurroundings)
-        {
-            return new Vector3Int(0, 0, 0);
-        }
-
-        return new Vector3Int(1, tempIntX, tempIntY);
+        return new Vector3Int(0, 0, 0);
     }
 
     private Vector3Int CheckSidesCorridor(GameObject obj, int maxSurroundings, Vector2Int coords, params string[] tags)

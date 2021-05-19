@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1412277633721872653}
   - component: {fileID: 6091128848061310748}
   - component: {fileID: 1942952683}
-  m_Layer: 0
+  - component: {fileID: -7495626105357303543}
+  m_Layer: 9
   m_Name: Barrel_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,10 +78,26 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
-  m_CookingOptions: 14
+  m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 55263d143399bff4e914ff995f4e256d, type: 3}
+--- !u!208 &-7495626105357303543
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1942952682}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1522859911620202975
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +109,7 @@ GameObject:
   - component: {fileID: 8986520128702383481}
   - component: {fileID: 4708820018920662982}
   - component: {fileID: 1422655724185946388}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mesh_LOD3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +152,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -146,6 +165,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -158,6 +178,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2147572687550205846
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +190,7 @@ GameObject:
   - component: {fileID: 3897111203152755940}
   - component: {fileID: 2490324778502958217}
   - component: {fileID: 721575455299222261}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mesh_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +233,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -223,6 +246,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -235,6 +259,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &3463662741077628303
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +271,7 @@ GameObject:
   - component: {fileID: 2670058872226979809}
   - component: {fileID: 7774634803820655031}
   - component: {fileID: 5078391928071752372}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mesh_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,6 +314,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -300,6 +327,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -312,6 +340,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7664857588374541179
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +352,7 @@ GameObject:
   - component: {fileID: 5185903440414214699}
   - component: {fileID: 7442886945235647463}
   - component: {fileID: 2120037151344046042}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: mesh_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +395,8 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -377,6 +408,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -389,3 +421,4 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}

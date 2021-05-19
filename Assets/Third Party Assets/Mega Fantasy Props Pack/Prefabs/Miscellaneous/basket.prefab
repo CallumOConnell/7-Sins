@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3377754}
   - component: {fileID: 2317912}
   - component: {fileID: 6415396}
-  m_Layer: 0
+  - component: {fileID: -2208078935631654130}
+  m_Layer: 9
   m_Name: basket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,3 +97,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: c9f241be888139c4fb58d36439c0fba0, type: 3}
+--- !u!208 &-2208078935631654130
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106920}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.48600003, y: 0.24700001, z: 0.42100003}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.001, y: 0.24700001, z: 0}
+  m_TimeToStationary: 0.5
