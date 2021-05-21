@@ -65,6 +65,16 @@ MonoBehaviour:
       name: Square Box
     - gameObject: {fileID: 117426, guid: 2813f18062e255a4aa5723d7a214a18c, type: 3}
       name: Cage
+    - gameObject: {fileID: 173298, guid: 9067651dcf99b9f4e96b878d0ab98445, type: 3}
+      name: Anvil
+    - gameObject: {fileID: 173362, guid: 97318fbbd96e1824c9f8390c74e20ed3, type: 3}
+      name: Bucket
+    - gameObject: {fileID: 163998, guid: 8084703d30cc2204d910a3ffb54cf246, type: 3}
+      name: Bag
+    - gameObject: {fileID: 183876, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
+      name: Cauldron
+    - gameObject: {fileID: 186590, guid: c544f22775dffd641b35be9b929052d1, type: 3}
+      name: Crate
     wallObjects:
     - gameObject: {fileID: 164718, guid: f990a7f182be91b41b7167bc5fdff7eb, type: 3}
       name: Torch
@@ -84,4 +94,14 @@ MonoBehaviour:
       name: Cage
     - gameObject: {fileID: 106920, guid: 5c63ee1e94a9a014da2292f3dbf7b19a, type: 3}
       name: Basket
+    - gameObject: {fileID: 186590, guid: c544f22775dffd641b35be9b929052d1, type: 3}
+      name: Crate
+    - gameObject: {fileID: 188746, guid: 9d9dd1cff3cb5e147b732da5712b7587, type: 3}
+      name: Crate 2
+    - gameObject: {fileID: 133720, guid: 9f1174680b6eec646bad64015b37aaa3, type: 3}
+      name: Weapon Rack small
+    - gameObject: {fileID: 187978, guid: 0137f721b82b567438eb74a52f479f35, type: 3}
+      name: Weapon Rack
+    - gameObject: {fileID: 183876, guid: 0decf664aa10e334dac700e1299b0eed, type: 3}
+      name: Cauldron
     middleObjectsRate: 100
