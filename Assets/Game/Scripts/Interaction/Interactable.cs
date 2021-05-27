@@ -13,7 +13,8 @@ namespace Sins.Interaction
 
         public float Radius { get => _radius; set => _radius = value; }
 
-        private void OnDrawGizmosSelected() // Debug for displaying the radius around an interactable
+        // Debug for displaying the radius around an interactable
+        private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _radius);
