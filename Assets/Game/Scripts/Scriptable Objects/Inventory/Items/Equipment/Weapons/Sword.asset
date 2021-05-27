@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fb33d470076fb48a048d7284bdf9d4, type: 3}
+  m_Name: Sword
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: afbe90b02df0d4c48ba20bd124d6ef9c, type: 3}
+  _description: A sturdy iron sword that can be used as a weapon.
+  _shape:
+    _width: 2
+    _height: 2
+    _shape: 01010101
+  _type: 1
+  _canDrop: 1
+  _prefab: {fileID: 2926894413368637207, guid: 17194155c9a34414ba3bf9c6cc53497c, type: 3}
+  EquipSlot: 0
+  Mesh: {fileID: 2825964937374616774, guid: 40642bb87c57bf949b84e90e18160325, type: 3}
+  AttackDamageModifier: 0
+  AttackSpeedModifier: 0
+  PositionOffset: {x: -0.00018, y: 0.00011, z: 0.00239}
+  RotationOffset: {x: -13.963, y: -10.116, z: 116.893}
+  ScaleOffset: {x: 0.02, y: 0.02, z: 0.02}

@@ -31,7 +31,7 @@ namespace Sins.Character
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out RaycastHit hit, 100, _groundLayer))
+                    if (Physics.Raycast(ray, out var hit, 100, _groundLayer))
                     {
                         _agent.SetDestination(hit.point);
 
@@ -43,9 +43,9 @@ namespace Sins.Character
                 {
                     var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(ray, out RaycastHit hit, 100))
+                    if (Physics.Raycast(ray, out var hit, 100))
                     {
-                        Interactable interactable = hit.collider.GetComponent<Interactable>();
+                        var interactable = hit.collider.GetComponent<Interactable>();
 
                         if (interactable != null)
                         {

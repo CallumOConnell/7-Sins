@@ -26,12 +26,9 @@ namespace Sins.UI
         [SerializeField]
         private Color _tabTextActiveColour;
 
-        [SerializeField]
-        private Sprite _tabActiveSprite;
-
         private List<TabButton> _tabButtons = new List<TabButton>();
 
-        private TabButton _selectedTab;
+        private TabButton _selectedTab; 
 
         private void Update()
         {
@@ -93,7 +90,6 @@ namespace Sins.UI
 
             button.Background.color = _tabActiveColour;
             button.Text.color = _tabTextActiveColour;
-            button.Background.sprite = _tabActiveSprite;
 
             var index = button.transform.GetSiblingIndex();
 
