@@ -10,7 +10,7 @@ namespace Sins.UI
         private GameObject _pauseMenu;
 
         [SerializeField]
-        private GameObject _optionsMenu;
+        private CanvasGroup _optionsMenu;
 
         [SerializeField]
         private CanvasGroup _hud;
@@ -26,9 +26,12 @@ namespace Sins.UI
 
             _playerController.MovementLocked = true;
 
-            _hud.alpha = 0;
-            _hud.interactable = false;
-            _hud.blocksRaycasts = false;
+            if (_hud != null)
+            {
+                _hud.alpha = 0;
+                _hud.interactable = false;
+                _hud.blocksRaycasts = false;
+            }
 
             _pauseMenu.SetActive(true);
 
@@ -43,9 +46,12 @@ namespace Sins.UI
 
             _pauseMenu.SetActive(false);
 
-            _hud.alpha = 1;
-            _hud.interactable = true;
-            _hud.blocksRaycasts = true;
+            if (_hud != null)
+            {
+                _hud.alpha = 1;
+                _hud.interactable = true;
+                _hud.blocksRaycasts = true;
+            }
 
             GamePaused = false;
         }
@@ -53,18 +59,15 @@ namespace Sins.UI
         public void OpenOptionsMenu()
         {
             _pauseMenu.SetActive(false);
-            _optionsMenu.SetActive(true);
+
+            _optionsMenu.alpha = 1f;
+            _optionsMenu.interactable = true;
+            _optionsMenu.blocksRaycasts = true;
         }
 
-        public void ExitToTitleScreen()
-        {
-            SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
-        }
+        public void ExitToTitleScreen() => SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
 
-        public void ExitToDesktop()
-        {
-            Application.Quit();
-        }
+        public void ExitToDesktop() => Application.Quit();
 
         private void Update()
         {

@@ -31,7 +31,7 @@ namespace Sins.UI
         private CanvasGroup _optionsMenu;
 
         [SerializeField]
-        private GameObject _homeMenu;
+        private GameObject _previousMenu;
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -61,7 +61,15 @@ namespace Sins.UI
             _optionsMenu.interactable = false;
             _optionsMenu.blocksRaycasts = false;
 
-            _homeMenu.SetActive(true);
+            _previousMenu.SetActive(true);
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ExitToHome();
+            }
         }
     }
 }

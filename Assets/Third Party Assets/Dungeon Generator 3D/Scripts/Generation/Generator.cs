@@ -12,6 +12,8 @@ public class Generator : MonoBehaviour
 
     [SerializeField] private GenerationSettings generationSettings;
 
+    [SerializeField] private GameObject _player;
+
     private bool deleteInnerCorners;
 
     private int rooms;
@@ -219,8 +221,8 @@ public class Generator : MonoBehaviour
         if (maxEnemiesPerRoom == 0)
             Debug.Log("Maximum enemies per room are currently equal to 0");
 
-        player = settings.player;
-        if(player == null)
+        //player = settings.player;
+        if(_player == null)
             Debug.Log("Player is null or nonexistent.");
 
         enemies = settings.enemies;
@@ -1896,9 +1898,10 @@ public class Generator : MonoBehaviour
 
         DestroyImmediate(PlayerSpawnRoom.gameObject.GetComponent<BoxCollider>());
 
-        if(player != null)
+        if (_player != null)
         {
-            player = Instantiate(Player, PlayerSpawnRoom.transform.position, Quaternion.identity, gameObject.transform);
+            //player = Instantiate(Player, PlayerSpawnRoom.transform.position, Quaternion.identity, gameObject.transform);
+            _player.transform.position = playerSpawnRoom.transform.position;
         }
 
         if(bosses.Count > 0)

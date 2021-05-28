@@ -26,16 +26,16 @@ namespace Sins.UI
         private Slider _uiSlider;
 
         [SerializeField]
-        private TextMeshProUGUI _masterText;
+        private TMP_Text _masterText;
 
         [SerializeField]
-        private TextMeshProUGUI _musicText;
+        private TMP_Text _musicText;
 
         [SerializeField]
-        private TextMeshProUGUI _effectsText;
+        private TMP_Text _effectsText;
 
         [SerializeField]
-        private TextMeshProUGUI _uiText;
+        private TMP_Text _uiText;
 
         [Header("Resolution"), Space]
 
@@ -44,13 +44,27 @@ namespace Sins.UI
 
         private Resolution[] _resolutions;
 
-        private void Start()
+        private void OnEnable()
+        {
+            InitialiseAudio();
+            InitialiseDisplay();
+        }
+
+        public void InitialiseAudio()
         {
             _masterSlider.value = PlayerPrefs.GetFloat("MasterVolumeSliderPosition", 1);
             _musicSlider.value = PlayerPrefs.GetFloat("MusicVolumeSliderPosition", 1);
             _sfxSlider.value = PlayerPrefs.GetFloat("SFXVolumeSliderPosition", 1);
             _uiSlider.value = PlayerPrefs.GetFloat("UIVolumeSliderPosition", 1);
 
+            _masterText.text = _masterSlider.value.ToString("F1");
+            _musicText.text = _musicSlider.value.ToString("F1");
+            _effectsText.text = _sfxSlider.value.ToString("F1");
+            _uiText.text = _uiSlider.value.ToString("F1");
+        }
+
+        public void InitialiseDisplay()
+        {
             _resolutions = Screen.resolutions;
 
             _resolutionDropDown.ClearOptions();
@@ -83,8 +97,6 @@ namespace Sins.UI
             var volume = Mathf.Log10(value) * 20;
 
             _masterMixer.SetFloat(name, volume);
-
-            PlayerPrefs.SetFloat(name + "Volume", volume);
         }
 
         public void SetResolution(int resolutionIndex)
@@ -121,15 +133,9 @@ namespace Sins.UI
             }
         }
 
-        public void SetVync(int index)
-        {
-            QualitySettings.vSyncCount = index;
-        }
+        public void SetVync(int index) => QualitySettings.vSyncCount = index;
 
-        public void SetAntiAlisasingQuality(int index)
-        {
-            QualitySettings.antiAliasing = index; // Value between 2 and 8 and disabled option.
-        }
+        public void SetAntiAlisasingQuality(int index) => QualitySettings.antiAliasing = index; // Value between 2 and 8 and disabled option.
 
         public void SetShadowResolutionQuality(int index)
         {
@@ -162,10 +168,7 @@ namespace Sins.UI
             }
         }
 
-        public void SetTextureQuality(int index)
-        {
-            QualitySettings.masterTextureLimit = index;
-        }
+        public void SetTextureQuality(int index) => QualitySettings.masterTextureLimit = index;
 
         public void SetShadowQuality(int index)
         {
@@ -192,20 +195,11 @@ namespace Sins.UI
             }
         }
 
-        public void SetShadowCascasdsQuality(int index)
-        {
-            QualitySettings.shadowCascades = index;
-        }
+        public void SetShadowCascasdsQuality(int index) => QualitySettings.shadowCascades = index;
 
-        public void SetSoftParticleQuality(int index)
-        {
-            QualitySettings.softParticles = index == 1;
-        }
+        public void SetSoftParticleQuality(int index) => QualitySettings.softParticles = index == 1;
 
-        public void SetReflectionQuality(int index)
-        {
-            QualitySettings.realtimeReflectionProbes = index == 1;
-        }
+        public void SetReflectionQuality(int index) => QualitySettings.realtimeReflectionProbes = index == 1;
 
         public void SetAnisotropicFilteringQuality(int index)
         {
@@ -234,30 +228,42 @@ namespace Sins.UI
 
         public void SetMasterVolume(float value)
         {
-            SetVolume("Master", value);
+            if (_masterSlider.IsActive())
+            {
+                SetVolume("Master", value);
 
-            _masterText.text = value.ToString("F1");
+                _masterText.text = value.ToString("F1");
+            }
         }
 
         public void SetMusicVolume(float value)
         {
-            SetVolume("Music", value);
+            if (_musicSlider.IsActive())
+            {
+                SetVolume("Music", value);
 
-            _musicText.text = value.ToString("F1");
+                _musicText.text = value.ToString("F1");
+            }
         }
 
         public void SetSFXVolume(float value)
         {
-            SetVolume("SFX", value);
+            if (_sfxSlider.IsActive())
+            {
+                SetVolume("SFX", value);
+            }
 
             _effectsText.text = value.ToString("F1");
         }
 
         public void SetUIVolume(float value)
         {
-            SetVolume("UI", value);
+            if (_uiSlider.IsActive())
+            {
+                SetVolume("UI", value);
 
-            _uiText.text = value.ToString("F1");
+                _uiText.text = value.ToString("F1");
+            }
         }
     }
 }
