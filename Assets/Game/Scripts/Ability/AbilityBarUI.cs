@@ -18,7 +18,7 @@ namespace Sins.Abilities
 
         private void Awake()
         {
-            for (var i = 0; i < 4; i++)
+            for (var i = 0; i < 3; i++)
             {
                 if (_abilitySlotPrefab != null)
                 {

@@ -25,10 +25,7 @@ namespace Sins.Abilities
 
         public Ability Ability { get; set; }
 
-        private void Awake()
-        {
-            Instance = this;
-        }
+        private void Awake() => Instance = this;
 
         public void SetAbility(Ability newAbility)
         {

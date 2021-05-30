@@ -1,6 +1,7 @@
 ﻿using Sins.AI;
 using Sins.Character;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Sins.Abilities
 {
@@ -30,6 +31,9 @@ namespace Sins.Abilities
         [SerializeField]
         private LayerMask _groundMask;
 
+        [SerializeField]
+        private Animator _animator;
+
         private void Awake()
         {
             _ability.OnAbilityUsed.AddListener(cooldown => Use());
@@ -39,8 +43,6 @@ namespace Sins.Abilities
 
         public void Use()
         {
-            Debug.Log("Molten Strike Ability Activated");
-
             var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
             var mousePosition = Vector3.zero;
@@ -49,6 +51,8 @@ namespace Sins.Abilities
             {
                 mousePosition = raycastHit.point;
             }
+
+            _animator.SetTrigger("attack");
 
             var colliders = Physics.OverlapSphere(mousePosition, _radius, _enemyMask);
 
@@ -68,6 +72,8 @@ namespace Sins.Abilities
 
                             collider.gameObject.GetComponent<EnemyController>().Stun();
                         }
+
+                        collider.gameObject.transform.Find("Molten_Strike_Effect").GetComponent<VisualEffect>().Play();
 
                         collider.gameObject.GetComponent<EnemyStats>().Damage(damage);
                     }

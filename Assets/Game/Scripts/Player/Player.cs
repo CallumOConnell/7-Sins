@@ -31,6 +31,8 @@ namespace Sins.Character
 
             var levelSystemAnimated = new LevelSystemAnimated(_levelSystem);
 
+            _levelSystem.AddExperience(100);
+
             _hud.SetLevelSystemAnimated(levelSystemAnimated);
         }
     }

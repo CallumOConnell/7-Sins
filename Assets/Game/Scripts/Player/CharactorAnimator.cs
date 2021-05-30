@@ -8,9 +8,10 @@ namespace Sins.Character
         [SerializeField]
         private Animator _animator;
 
-        private NavMeshAgent _agent;
+        [SerializeField]
+        private float _locomationAnimationSmoothTime = 0.02f;
 
-        private const float _locomationAnimationSmoothTime = 0.02f;
+        private NavMeshAgent _agent;
 
         private void Awake() => _agent = GetComponent<NavMeshAgent>();
 

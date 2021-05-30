@@ -123,7 +123,12 @@ namespace Sins.UI
 
             var nextIndex = currentIndex < _tabButtons.Count - 1 ? currentIndex + 1 : _tabButtons.Count - 1;
 
-            OnTabSelected(_tabButtons[nextIndex]);
+            var tabButton = _tabButtons[nextIndex];
+
+            if (tabButton != null)
+            {
+                OnTabSelected(_tabButtons[nextIndex]);
+            }
         }
 
         public void PreviousTab()
@@ -132,7 +137,12 @@ namespace Sins.UI
 
             var previousIndex = currentIndex > 0 ? currentIndex - 1 : 0;
 
-            OnTabSelected(_tabButtons[previousIndex]);
+            var tabButton = _tabButtons[previousIndex];
+
+            if (tabButton != null)
+            {
+                OnTabSelected(_tabButtons[previousIndex]);
+            }
         }
     }
 }

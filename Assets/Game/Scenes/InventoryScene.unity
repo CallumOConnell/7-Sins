@@ -1861,6 +1861,10 @@ PrefabInstance:
       propertyPath: _deathScreen
       value: 
       objectReference: {fileID: 538356547}
+    - target: {fileID: 7542696184294200284, guid: 6e282e6eede096c41bee8df2efdcc442, type: 3}
+      propertyPath: AttackDamage._baseValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7542696184294200296, guid: 6e282e6eede096c41bee8df2efdcc442, type: 3}
       propertyPath: _temporaryParent
       value: 

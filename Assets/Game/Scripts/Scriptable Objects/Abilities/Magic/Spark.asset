@@ -18,5 +18,4 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 42ac7873609da1d41a0ef3847e8fa7f0, type: 3}
   CooldownTime: 5
   LevelRequirement: 1
-  Name: 15
-  Type: 3
+  Type: 2

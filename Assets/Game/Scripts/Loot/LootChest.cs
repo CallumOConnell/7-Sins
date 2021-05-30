@@ -16,6 +16,9 @@ namespace Sins.Loot
         private int _maximumAmountToDrop = 4;
 
         [SerializeField]
+        private float _spawnRadius = 0.5f;
+
+        [SerializeField]
         private LootTable _lootTable;
 
         [SerializeField]
@@ -69,7 +72,7 @@ namespace Sins.Loot
 
                         if (newItem != null)
                         {
-                            var itemPosition = CalculatePosition(centre, 2);
+                            var itemPosition = CalculatePosition(centre, _spawnRadius);
 
                             var lootItem = Instantiate(newItem.Prefab, itemPosition, Quaternion.identity);
 
@@ -101,11 +104,13 @@ namespace Sins.Loot
         {
             var angle = UnityEngine.Random.Range(0, Mathf.PI * 2);
 
-            var x = Mathf.Sin(angle) * radius;
+            var x = Mathf.Sin(angle);
             var y = GetGroundHeight(centre) + 0.13f;
-            var z = Mathf.Cos(angle) * radius;
+            var z = Mathf.Cos(angle);
 
             var position = new Vector3(x, y, z);
+
+            position *= radius;
 
             return position;
         }

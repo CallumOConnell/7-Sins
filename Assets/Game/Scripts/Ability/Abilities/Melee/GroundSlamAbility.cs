@@ -58,11 +58,20 @@ namespace Sins.Abilities
 
                         if (randomValue <= _stunChance)
                         {
+                            var enemyController = collider.gameObject.GetComponent<EnemyController>();
 
-                            collider.gameObject.GetComponent<EnemyController>().Stun();
+                            if (enemyController != null)
+                            {
+                                enemyController.Stun();
+                            }
                         }
 
-                        collider.gameObject.GetComponent<EnemyStats>().Damage(damage);
+                        var enemyStats = collider.gameObject.GetComponent<EnemyStats>();
+
+                        if (enemyStats != null)
+                        {
+                            enemyStats.Damage(damage);
+                        }
                     }
                 }
             }

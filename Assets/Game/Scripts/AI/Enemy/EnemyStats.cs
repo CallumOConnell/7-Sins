@@ -47,7 +47,7 @@ namespace Sins.Character
         {
             var spawnPosition = transform.position;
 
-            spawnPosition.y += 2.5f;
+            spawnPosition.y += 0.5f;
 
             var damagePoints = Instantiate(_damagePopup, spawnPosition, transform.rotation, _temporaryParent);
 

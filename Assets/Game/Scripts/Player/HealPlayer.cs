@@ -23,7 +23,7 @@ namespace Sins.Character
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 if (_canUse && _playerStats.Health <= _playerStats.MaxHealth.GetValue())
                 {
