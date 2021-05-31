@@ -1,75 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using UnityEngine.EventSystems;
+using Sins.UI;
 
 namespace Sins.Abilities
 {
-    public class SelectedAbilitySlot : MonoBehaviour
+    public class SelectedAbilitySlot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
         private AbilityBar _abilityBar;
 
         [SerializeField]
-        private AbilityBarUI _abilityBarUI;
+        private int _slotIndex = 0;
 
-        [SerializeField]
-        private GameObject _meleeSlot;
+        private Image _icon;
 
-        [SerializeField]
-        private GameObject _rangedSlot;
-
-        [SerializeField]
-        private GameObject _magicSlot;
-
-        public static SelectedAbilitySlot Instance;
-
-        public Ability Ability { get; set; }
-
-        private void Awake() => Instance = this;
-
-        public void SetAbility(Ability newAbility)
+        public void OnPointerClick(PointerEventData eventData)
         {
-            Ability = newAbility;
-
-            GameObject selectedSlot = null;
-
-            switch (newAbility.Type)
+            if (eventData.button == PointerEventData.InputButton.Left)
             {
-                case AbilityType.Melee:
+                if (Hand.Instance.Moveable != null)
                 {
-                    selectedSlot = _meleeSlot;
+                    _icon.sprite = Hand.Instance.Put().Icon;
 
-                    break;
+                    _abilityBar.SetAbilityBarSlot(Hand.Instance.Moveable as Ability, _slotIndex);
                 }
-                case AbilityType.Ranged:
-                {
-                    selectedSlot = _rangedSlot;
-
-                    break;
-                }
-                case AbilityType.Magic:
-                {
-                    selectedSlot = _magicSlot;
-
-                    break;
-                }
-            }
-
-            if (selectedSlot != null)
-            {
-                selectedSlot.transform.GetChild(1).GetComponent<Image>().sprite = newAbility.Icon;
-                selectedSlot.transform.GetChild(2).GetComponent<TMP_Text>().text = newAbility.Title;
-            }
-
-            if (_abilityBar != null)
-            {
-                _abilityBar.Abilities[(int)newAbility.Type] = newAbility;
-            }
-
-            if (_abilityBarUI != null)
-            {
-                _abilityBarUI.UpdateAbilitySlot((int)newAbility.Type);
             }
         }
+
+        private void Awake() => _icon = transform.GetChild(1).GetComponent<Image>();
     }
 }

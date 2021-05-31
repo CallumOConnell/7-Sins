@@ -28,7 +28,17 @@ namespace Sins.Abilities
                 }
             }
             
-            _activeAbilities = _abilityBar.Abilities;
+            _activeAbilities = _abilityBar.MeleeAbilities;
+        }
+
+        public void SetAbilityBarType(Ability[] abilityBar)
+        {
+            _activeAbilities = abilityBar;
+
+            for (var i = 0; i < _activeAbilities.Length; i++)
+            {
+                UpdateAbilitySlot(i);
+            }
         }
 
         public void UpdateAbilitySlot(int slotIndex)

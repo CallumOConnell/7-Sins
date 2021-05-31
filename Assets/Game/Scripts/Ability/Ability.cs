@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using Sins.UI;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Sins.Abilities
 {
     [CreateAssetMenu(fileName = "Ability", menuName = "Ability Tree/Ability", order = 1)]
-    public class Ability : ScriptableObject
+    public class Ability : ScriptableObject, IMoveable
     {
         public string Title; // Name of the ability
 
@@ -20,6 +21,8 @@ namespace Sins.Abilities
         public AbilityType Type; // The type of ability that falls in one of three categories
 
         public bool CanUse { get; set; } = true;
+
+        Sprite IMoveable.Icon => Icon;
 
         public class FloatEvent : UnityEvent<float> { }
 

@@ -84,17 +84,13 @@ namespace Sins.AI
 
         private void Patrol()
         {
-            Debug.Log("A");
-
             if (!_isTravelling && !_isWaiting)
             {
-                Debug.Log("B");
                 FindPatrolPoint();
             }
 
             if (_isTravelling && _agent.remainingDistance <= 2f)
             {
-                Debug.Log("C");
                 _isTravelling = false;
 
                 _isWaiting = true;
@@ -104,12 +100,10 @@ namespace Sins.AI
 
             if (_isWaiting)
             {
-                Debug.Log("D");
                 _waitTimer += Time.deltaTime;
 
                 if (_waitTimer >= _timeToWait)
                 {
-                    Debug.Log("E");
                     _isWaiting = false;
 
                     FindPatrolPoint();
@@ -119,7 +113,6 @@ namespace Sins.AI
 
         private void FindPatrolPoint()
         {
-            Debug.Log("F");
             var randomZ = Random.Range(-_patrolRange, _patrolRange);
             var randomX = Random.Range(-_patrolRange, _patrolRange);
 
@@ -127,7 +120,6 @@ namespace Sins.AI
 
             if (Physics.Raycast(patrolPoint, -transform.up, float.MaxValue, _groundLayer))
             {
-                Debug.Log("G");
                 _isTravelling = true;
 
                 _agent.SetDestination(patrolPoint);

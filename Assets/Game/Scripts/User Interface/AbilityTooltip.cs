@@ -8,7 +8,7 @@ namespace Sins.UI
     {
         private Ability _ability;
 
-        private void Start() => _ability = GetComponent<AbilityComponent>().Ability;
+        private void Start() => _ability = GetComponent<AbilityButton>().Ability;
 
         public void OnPointerEnter(PointerEventData eventData) => TooltipSystem.Show(_ability.Description, _ability.Title);
 

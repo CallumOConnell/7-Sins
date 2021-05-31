@@ -27,7 +27,7 @@ namespace Sins.Abilities
                             {
                                 var abilitySlot = Instantiate(_abilityPrefab, transform);
 
-                                abilitySlot.GetComponent<AbilityComponent>().Ability = ability;
+                                abilitySlot.GetComponent<AbilityButton>().Ability = ability;
 
                                 abilitySlot.transform.GetChild(0).GetComponent<Image>().sprite = ability.Icon;
                                 abilitySlot.transform.GetChild(1).GetComponent<TMP_Text>().text = ability.Title;
