@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fb33d470076fb48a048d7284bdf9d4, type: 3}
+  m_Name: Wand
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: -3860515135949180240, guid: fc4e85c4cdc0e524fa6f8151a421c7fe, type: 3}
+  _description: A wooden wand that allows you to cast magical spells.
+  _shape:
+    _width: 2
+    _height: 2
+    _shape: 01010101
+  _type: 1
+  _canDrop: 1
+  _prefab: {fileID: 871592755059426863, guid: e765a4f5c05b8d54ba86f4f209135228, type: 3}
+  EquipSlot: 0
+  AttackType: 3
+  Mesh: {fileID: 3034952715681243480, guid: 84683e20538b26d43ac2c5fed7a40264, type: 3}
+  AttackDamageModifier: 0
+  AttackSpeedModifier: 0
+  PositionOffset: {x: 0.00028, y: -0.00061, z: 0.00032}
+  RotationOffset: {x: 6.538, y: -6.894, z: -18.588}
+  ScaleOffset: {x: 0.01, y: 0.01, z: 0.0027082}

@@ -27,8 +27,6 @@ namespace Sins.Abilities
                     _abilitySlots.Add(abilitySlot);
                 }
             }
-            
-            _activeAbilities = _abilityBar.MeleeAbilities;
         }
 
         public void SetAbilityBarType(Ability[] abilityBar)
@@ -37,21 +35,29 @@ namespace Sins.Abilities
 
             for (var i = 0; i < _activeAbilities.Length; i++)
             {
-                UpdateAbilitySlot(i);
+                var ability = _activeAbilities[i];
+
+                if (ability != null)
+                {
+                    UpdateAbilitySlot(i);
+                }
             }
         }
 
         public void UpdateAbilitySlot(int slotIndex)
         {
-            var abilitySlot = _abilitySlots[slotIndex];
+            if (_activeAbilities != null && _activeAbilities.Length > 0)
+            {
+                var abilitySlot = _abilitySlots[slotIndex];
 
-            var abilitySlotUI = abilitySlot.GetComponent<AbilityBarSlotUI>();
+                var abilitySlotUI = abilitySlot.GetComponent<AbilityBarSlotUI>();
 
-            var ability = _activeAbilities[slotIndex];
+                var ability = _activeAbilities[slotIndex];
 
-            abilitySlot.transform.GetChild(0).GetComponent<Image>().sprite = ability.Icon;
+                abilitySlot.transform.GetChild(0).GetComponent<Image>().sprite = ability.Icon;
 
-            ability.OnAbilityUsed.AddListener(cooldown => abilitySlotUI.ShowCooldown(cooldown));
+                ability.OnAbilityUsed.AddListener(cooldown => abilitySlotUI.ShowCooldown(cooldown));
+            }
         }
     }
 }

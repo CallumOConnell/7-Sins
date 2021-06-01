@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using Sins.Abilities;
+using UnityEngine;
 
 namespace Sins.Inventory
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Inventory/Weapon")]
     public class Weapon : Equipment
     {
+        public AbilityType AttackType;
+
         public MeshRenderer Mesh;
 
         public int AttackDamageModifier;

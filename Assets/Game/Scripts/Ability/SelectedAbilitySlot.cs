@@ -21,9 +21,9 @@ namespace Sins.Abilities
             {
                 if (Hand.Instance.Moveable != null)
                 {
-                    _icon.sprite = Hand.Instance.Put().Icon;
-
                     _abilityBar.SetAbilityBarSlot(Hand.Instance.Moveable as Ability, _slotIndex);
+
+                    _icon.sprite = Hand.Instance.Put().Icon;
                 }
             }
         }

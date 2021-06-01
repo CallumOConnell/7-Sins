@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sins.Abilities;
+using UnityEngine;
 
 namespace Sins.Inventory
 {
@@ -17,6 +18,9 @@ namespace Sins.Inventory
 
         [SerializeField]
         private Transform _targetHand;
+
+        [SerializeField]
+        private AbilityBar _abilityBar;
 
         private Armour[] _currentArmour;
 
@@ -75,6 +79,11 @@ namespace Sins.Inventory
             weaponTransform.localPosition = newItem.PositionOffset;
             weaponTransform.localEulerAngles = newItem.RotationOffset;
             weaponTransform.localScale = newItem.ScaleOffset;
+
+            if (_abilityBar.CurrentBarType != newItem.AttackType)
+            {
+                _abilityBar.SetActiveBar(newItem.AttackType);
+            }
 
             WeaponEquipped = true;
         }

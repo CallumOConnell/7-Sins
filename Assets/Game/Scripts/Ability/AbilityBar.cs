@@ -17,7 +17,7 @@ namespace Sins.Abilities
         public Ability[] CurrentBar;
 
         [HideInInspector]
-        public AbilityType CurrentBarType;
+        public AbilityType CurrentBarType = AbilityType.None;
 
         [SerializeField]
         private AbilityBarUI _abilityBarUI;
@@ -89,33 +89,36 @@ namespace Sins.Abilities
 
         public void SetAbilityBarSlot(Ability ability, int slotIndex)
         {
-            switch (ability.Type)
+            if (ability != null)
             {
-                case AbilityType.Melee:
+                switch (ability.Type)
                 {
-                    MeleeAbilities[slotIndex] = ability;
+                    case AbilityType.Melee:
+                    {
+                        MeleeAbilities[slotIndex] = ability;
 
-                    break;
+                        break;
+                    }
+
+                    case AbilityType.Ranged:
+                    {
+                        RangedAbilities[slotIndex] = ability;
+
+                        break;
+                    }
+
+                    case AbilityType.Magic:
+                    {
+                        MagicAbilities[slotIndex] = ability;
+
+                        break;
+                    }
                 }
 
-                case AbilityType.Ranged:
+                if (CurrentBarType == ability.Type)
                 {
-                    RangedAbilities[slotIndex] = ability;
-
-                    break;
+                    _abilityBarUI.UpdateAbilitySlot(slotIndex);
                 }
-
-                case AbilityType.Magic:
-                {
-                    MagicAbilities[slotIndex] = ability;
-
-                    break;
-                }
-            }
-
-            if (CurrentBarType == ability.Type)
-            {
-                _abilityBarUI.UpdateAbilitySlot(slotIndex);
             }
         }
     }

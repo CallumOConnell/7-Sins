@@ -30,10 +30,7 @@ namespace Sins.UI
             return temp;
         }
 
-        private void Update()
-        {
-            _icon.transform.position = Input.mousePosition;
-        }
+        private void Update() => _icon.transform.position = Input.mousePosition;
 
         private void Awake()
         {

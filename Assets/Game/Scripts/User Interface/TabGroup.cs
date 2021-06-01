@@ -119,29 +119,35 @@ namespace Sins.UI
 
         public void NextTab()
         {
-            var currentIndex = _selectedTab.transform.GetSiblingIndex();
-
-            var nextIndex = currentIndex < _tabButtons.Count - 1 ? currentIndex + 1 : _tabButtons.Count - 1;
-
-            var tabButton = _tabButtons[nextIndex];
-
-            if (tabButton != null)
+            if (_selectedTab != null)
             {
-                OnTabSelected(_tabButtons[nextIndex]);
+                var currentIndex = _selectedTab.transform.GetSiblingIndex();
+
+                var nextIndex = currentIndex < _tabButtons.Count - 1 ? currentIndex + 1 : _tabButtons.Count - 1;
+
+                var tabButton = _tabButtons[nextIndex];
+
+                if (tabButton != null)
+                {
+                    OnTabSelected(_tabButtons[nextIndex]);
+                }
             }
         }
 
         public void PreviousTab()
         {
-            var currentIndex = _selectedTab.transform.GetSiblingIndex();
-
-            var previousIndex = currentIndex > 0 ? currentIndex - 1 : 0;
-
-            var tabButton = _tabButtons[previousIndex];
-
-            if (tabButton != null)
+            if (_selectedTab != null)
             {
-                OnTabSelected(_tabButtons[previousIndex]);
+                var currentIndex = _selectedTab.transform.GetSiblingIndex();
+
+                var previousIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+
+                var tabButton = _tabButtons[previousIndex];
+
+                if (tabButton != null)
+                {
+                    OnTabSelected(_tabButtons[previousIndex]);
+                }
             }
         }
     }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7fb33d470076fb48a048d7284bdf9d4, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: ff419e67005fe15429be8e31fc156a43, type: 3}
+  _description: A wooden bow that can be used as a ranged weapon.
+  _shape:
+    _width: 2
+    _height: 3
+    _shape: 010101010101
+  _type: 1
+  _canDrop: 1
+  _prefab: {fileID: 4833323148073909146, guid: f2407773d928218419e537d978ad3b63, type: 3}
+  EquipSlot: 0
+  AttackType: 2
+  Mesh: {fileID: 7846841092047310972, guid: 8e9ea4e4091e8d54999b0d9b473365f2, type: 3}
+  AttackDamageModifier: 0
+  AttackSpeedModifier: 0
+  PositionOffset: {x: 0.0001407067, y: -0.0004460197, z: 0}
+  RotationOffset: {x: -196.333, y: -22.68799, z: 58.982}
+  ScaleOffset: {x: 0.001046595, y: 0.001046595, z: 0.001046595}

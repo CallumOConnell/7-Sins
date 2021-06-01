@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 728924b902abfe04e94a01365d7ed938, type: 3}
+  m_Name: Poison Cloud
+  m_EditorClassIdentifier: 
+  Title: Poison Cloud
+  Description: Shimon throws a poison bomb that creates a cloud of poison damaging
+    any enemies inside of it.
+  Icon: {fileID: 21300000, guid: a86a151b9a3f1db4eb1c4811f4cf7f9c, type: 3}
+  CooldownTime: 5
+  LevelRequirement: 1
+  Type: 2

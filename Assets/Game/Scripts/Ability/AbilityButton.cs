@@ -1,7 +1,6 @@
 ﻿using Sins.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace Sins.Abilities
 {
@@ -9,9 +8,6 @@ namespace Sins.Abilities
     {
         public Ability Ability;
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
-            Hand.Instance.TakeMoveable(Ability);
-        }
+        public void OnPointerClick(PointerEventData eventData) => Hand.Instance.TakeMoveable(Ability);
     }
 }
