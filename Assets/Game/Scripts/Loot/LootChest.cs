@@ -144,7 +144,7 @@ namespace Sins.Loot
 
                 armour.MaxHealthModifier = GenerateStat(item.Rarity);
                 armour.ArmourModifier = GenerateStat(item.Rarity);
-                armour.MovementSpeedModifier = GenerateStat(item.Rarity);
+                //armour.MovementSpeedModifier = GenerateStat(item.Rarity);
             }
 
             return item;
@@ -156,27 +156,27 @@ namespace Sins.Loot
             {
                 case ItemRarity.Common:
                 {
-                    return UnityEngine.Random.Range(0, 100);
+                    return UnityEngine.Random.Range(0, 20);
                 }
                 
                 case ItemRarity.Uncommon:
                 {
-                    return UnityEngine.Random.Range(100, 200);
+                    return UnityEngine.Random.Range(21, 50);
                 }
 
                 case ItemRarity.Rare:
                 {
-                    return UnityEngine.Random.Range(200, 300);
+                    return UnityEngine.Random.Range(51, 100);
                 }
 
                 case ItemRarity.Epic:
                 {
-                    return UnityEngine.Random.Range(400, 500);
+                    return UnityEngine.Random.Range(101, 150);
                 }
 
                 case ItemRarity.Legendary:
                 {
-                    return UnityEngine.Random.Range(500, 600);
+                    return UnityEngine.Random.Range(151, 200);
                 }
 
                 default:

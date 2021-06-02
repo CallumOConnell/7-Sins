@@ -12,10 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e341eb2fc965c4d81ae3c657e824a2, type: 3}
   m_Name: Shimon & Head Priest
   m_EditorClassIdentifier: 
-  SpeakerLeft: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
-  SpeakerRight: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+  SpeakerLeft: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+  SpeakerRight: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
   Lines:
-  - Character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
-    Text: Hello Father
   - Character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
-    Text: Hello Shimon
+    Text: Hello Shimon, I have a request for you.
+  - Character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    Text: What may it be, Father?
+  - Character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    Text: We have an issue, The 7 sins artifacts have been stolen from the holy vault.
+  - Character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    Text: 'Stolen? No one should have access to the vaults other than you and other
+      high priests '
+  - Character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    Text: Thats the question, we are still trying to figure out how someone got access
+      to the vault. But we need you to regain them from who ever has them otherwise
+      the world could fall into chaos.
+  - Character: {fileID: 11400000, guid: 28f506e015de3f544bb7cce8992bf5a1, type: 2}
+    Text: I understand, I will start searching for them.
+  - Character: {fileID: 11400000, guid: 0466f7c8e20f7cd4084148e979e9c460, type: 2}
+    Text: Head out now there is no time to waste, Go to the front gate of the cathedral
+      and get back the artifacts. May God guide you Shimon.

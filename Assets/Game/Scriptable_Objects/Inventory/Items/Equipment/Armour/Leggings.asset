@@ -24,6 +24,6 @@ MonoBehaviour:
   EquipSlot: 3
   Mesh: {fileID: 35508368709962865, guid: 7ee0ce6c0474b6b418bde4c979e7ce89, type: 3}
   CoveredMeshRegions: 00000000
-  MaxHealthModifier: 0
-  ArmourModifier: 0
+  MaxHealthModifier: 4
+  ArmourModifier: 2
   MovementSpeedModifier: 0

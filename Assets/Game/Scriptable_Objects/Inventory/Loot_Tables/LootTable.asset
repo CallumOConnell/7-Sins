@@ -14,11 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _lootItems:
   - ItemName: Iron Helmet
-    DropChance: 35
+    DropChance: 25
     ItemObject: {fileID: 11400000, guid: 949ebbee176ad0c4282cf4428da83622, type: 2}
   - ItemName: Iron Chestplate
-    DropChance: 30
+    DropChance: 10
     ItemObject: {fileID: 11400000, guid: 2e349c010acc01b4989b94d04f83c4d9, type: 2}
   - ItemName: Iron Leggings
-    DropChance: 45
+    DropChance: 15
     ItemObject: {fileID: 11400000, guid: 61f10385fdd5fcf4a96e42594c4430aa, type: 2}
+  - ItemName: Bow
+    DropChance: 15
+    ItemObject: {fileID: 11400000, guid: b3639f9f6f8c9eb4bb65e8fb03a72910, type: 2}
+  - ItemName: Sword
+    DropChance: 20
+    ItemObject: {fileID: 11400000, guid: 834e5feebbab79e419f735b4bde147d2, type: 2}
+  - ItemName: Wand
+    DropChance: 15
+    ItemObject: {fileID: 11400000, guid: c917cec8d7b36394da1e921fab19984d, type: 2}
