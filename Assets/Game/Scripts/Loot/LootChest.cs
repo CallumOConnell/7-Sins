@@ -16,7 +16,7 @@ namespace Sins.Loot
         private int _maximumAmountToDrop = 4;
 
         [SerializeField]
-        private float _spawnRadius = 0.5f;
+        private int _spawnRadius = 1;
 
         [SerializeField]
         private LootTable _lootTable;
@@ -59,8 +59,6 @@ namespace Sins.Loot
                 // Spawn the items in the world around the chest
                 if (_itemsToDrop.Count > 0)
                 {
-                    var centre = transform.position;
-
                     foreach (var item in _itemsToDrop)
                     {
                         ItemDefinition newItem = null;
@@ -72,9 +70,9 @@ namespace Sins.Loot
 
                         if (newItem != null)
                         {
-                            var itemPosition = CalculatePosition(centre, _spawnRadius);
+                            var itemPosition = CalculatePosition();
 
-                            var lootItem = Instantiate(newItem.Prefab, itemPosition, Quaternion.identity);
+                            var lootItem = Instantiate(newItem.Prefab, transform.position - itemPosition, Quaternion.identity);
 
                             lootItem.GetComponent<PickupItem>().Item = newItem;
 
@@ -100,19 +98,15 @@ namespace Sins.Loot
             }
         }
 
-        private Vector3 CalculatePosition(Vector3 centre, float radius)
+        private Vector3 CalculatePosition()
         {
             var angle = UnityEngine.Random.Range(0, Mathf.PI * 2);
 
-            var x = Mathf.Sin(angle);
-            var y = GetGroundHeight(centre) + 0.13f;
-            var z = Mathf.Cos(angle);
+            var itemPosition = new Vector3(Mathf.Sin(angle), -0.05f, Mathf.Cos(angle));
 
-            var position = new Vector3(x, y, z);
+            itemPosition *= _spawnRadius;
 
-            position *= radius;
-
-            return position;
+            return itemPosition;
         }
 
         private float GetGroundHeight(Vector3 position)
