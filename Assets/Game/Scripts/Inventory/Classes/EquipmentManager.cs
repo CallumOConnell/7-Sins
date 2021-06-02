@@ -24,7 +24,7 @@ namespace Sins.Inventory
 
         private Armour[] _currentArmour;
 
-        private Weapon _currentWeapon;
+        public Weapon CurrentWeapon { get; private set; } 
 
         private SkinnedMeshRenderer[] _currentArmourMeshes;
 
@@ -60,7 +60,7 @@ namespace Sins.Inventory
             }
 
             // Insert the item into the slot
-            _currentWeapon = newItem;
+            CurrentWeapon = newItem;
 
             // Create the weapon mesh and parent it to the hand
             var weaponMesh = Instantiate(newItem.Mesh, _targetHand);
@@ -90,16 +90,16 @@ namespace Sins.Inventory
 
         public Weapon UnequipWeapon()
         {
-            if (_currentWeapon != null)
+            if (CurrentWeapon != null)
             {
                 if (_currentWeaponMesh != null)
                 {
                     Destroy(_currentWeaponMesh.gameObject);
                 }
 
-                var oldItem = _currentWeapon;
+                var oldItem = CurrentWeapon;
 
-                _currentWeapon = null;
+                CurrentWeapon = null;
 
                 if (OnEquipmentChangedCallBack != null)
                 {
