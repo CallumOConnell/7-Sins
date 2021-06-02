@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Sins.UI
 {
@@ -14,7 +13,7 @@ namespace Sins.UI
         [SerializeField]
         private TabGroup _tabGroup;
 
-        public void PlayGame() => SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        public void PlayGame() => GameManager.Instance.LoadGame();
 
         public void OpenOptionsMenu()
         {
