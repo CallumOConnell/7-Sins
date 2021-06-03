@@ -30,6 +30,13 @@ namespace Sins.UI
             return temp;
         }
 
+        public void ClearHand()
+        {
+            Moveable = null;
+
+            _icon.color = new Color(0, 0, 0, 0);
+        }
+
         private void Update() => _icon.transform.position = Input.mousePosition;
 
         private void Awake()

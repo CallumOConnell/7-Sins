@@ -10,6 +10,7 @@ TagManager:
   - Room
   - Enemy
   - Prop
+  - Projectile
   layers:
   - Default
   - TransparentFX

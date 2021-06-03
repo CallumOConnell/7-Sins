@@ -17,7 +17,7 @@ namespace Sins.Abilities
         private Transform _temporaryParent;
 
         [SerializeField]
-        private int _throwForce = 100;
+        private int _projectileSpeed;
 
         [SerializeField]
         private int _minimumDamage = 1;
@@ -26,7 +26,7 @@ namespace Sins.Abilities
         private int _maximumDamage = 2;
 
         [SerializeField]
-        private float _radius = 2f;
+        private float _radius = 5f;
 
         [SerializeField]
         private Camera _camera;
@@ -63,7 +63,7 @@ namespace Sins.Abilities
                 {
                     if (collider != null)
                     {
-                        var enemy = collider.gameObject;
+                        var target = collider.gameObject;
 
                         var arrow = Instantiate(_arrowPrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();
 
@@ -71,9 +71,9 @@ namespace Sins.Abilities
 
                         arrow.gameObject.GetComponent<Projectile>().Damage = damage;
 
-                        var targetPosition = (enemy.transform.position - _projectileSpawn.position) / 3;
+                        var velocity = (target.transform.position - transform.position).normalized * _projectileSpeed;
 
-                        arrow.velocity = targetPosition * _throwForce;
+                        arrow.velocity = velocity;
                     }
                 }
             }

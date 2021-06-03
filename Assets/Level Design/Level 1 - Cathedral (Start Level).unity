@@ -7878,7 +7878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _portrait: {fileID: 1158745746}
-  _nameText: {fileID: 0}
+  _nameText: {fileID: 1544633334}
   _dialogueText: {fileID: 742395568}
 --- !u!1 &856115251 stripped
 GameObject:
@@ -20106,7 +20106,10 @@ SkinnedMeshRenderer:
   - {fileID: 2215097807064038788}
   - {fileID: 1497325153767745436}
   - {fileID: 6369183208360131765}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 100
+  - 0
+  - 0
   m_RootBone: {fileID: 3742407835899007651}
   m_AABB:
     m_Center: {x: -0.000038596685, y: -0.00018819142, z: 0.000019404688}

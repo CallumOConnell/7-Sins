@@ -63,6 +63,8 @@ namespace Sins.Abilities
             _hud.alpha = 1;
             _hud.interactable = true;
             _hud.blocksRaycasts = true;
+
+            Hand.Instance.ClearHand();
         }
     }
 }
