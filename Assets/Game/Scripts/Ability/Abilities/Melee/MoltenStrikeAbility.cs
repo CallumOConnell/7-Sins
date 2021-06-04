@@ -52,6 +52,8 @@ namespace Sins.Abilities
                 mousePosition = raycastHit.point;
             }
 
+            transform.LookAt(mousePosition);
+
             _animator.SetTrigger("attack");
 
             var colliders = Physics.OverlapSphere(mousePosition, _radius, _enemyMask);

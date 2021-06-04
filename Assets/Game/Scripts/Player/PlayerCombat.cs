@@ -36,20 +36,14 @@ namespace Sins.Character
         {
             base.Attack(targetStats);
 
-            Debug.Log("Attempt Attack");
-
             if (_attackCooldown <= 0f)
             {
                 var attackType = EquipmentManager.Instance.CurrentWeapon.AttackType;
-
-                Debug.Log("Attack Not On Cooldown");
 
                 switch (attackType)
                 {
                     case AbilityType.Melee:
                     {
-                        Debug.Log("Melee Attack Case");
-
                         MeleeAttack(targetStats);
 
                         break;
@@ -57,8 +51,6 @@ namespace Sins.Character
 
                     case AbilityType.Ranged:
                     {
-                        Debug.Log("Ranged Attack Case");
-
                         RangedAttack(targetStats);
 
                         break;
@@ -66,8 +58,6 @@ namespace Sins.Character
 
                     case AbilityType.Magic:
                     {
-                        Debug.Log("Magic Attack Case");
-
                         MagicAttack(targetStats);
 
                         break;
@@ -94,8 +84,6 @@ namespace Sins.Character
 
         private void MeleeAttack(CharacterStats targetStats)
         {
-            Debug.Log("Melee Attack Start");
-
             _animator.SetTrigger("attack");
 
             StartCoroutine(DoDamage(targetStats, _meleeAttackDelay));
@@ -103,8 +91,6 @@ namespace Sins.Character
 
         private void RangedAttack(CharacterStats targetStats)
         {
-            Debug.Log("Ranged Attack Start");
-
             _animator.SetTrigger("bow");
 
             ShootProjectile(_arrowPrefab, targetStats);
@@ -112,15 +98,11 @@ namespace Sins.Character
 
         private void MagicAttack(CharacterStats targetStats)
         {
-            Debug.Log("Magic Attack Start");
-
             ShootProjectile(_magicMissilePrefab, targetStats);
         }
 
         private void ShootProjectile(GameObject prefab, CharacterStats targetStats)
         {
-            Debug.Log("Shoot Projectile Started");
-
             var clone = Instantiate(prefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();
 
             clone.GetComponent<Projectile>().Damage = _playerStats.AttackDamage.GetValue();
@@ -130,23 +112,6 @@ namespace Sins.Character
             var velocity = (target.transform.position - transform.position).normalized * _projectileSpeed;
 
             clone.velocity = velocity;
-
-            Debug.Log("Shoot Projectile Ended");
-        }
-
-        private void Test(CharacterStats targetStats)
-        {
-            _animator.SetTrigger("bow");
-
-            var enemy = targetStats.gameObject;
-
-            var arrow = Instantiate(_arrowPrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();
-
-            arrow.gameObject.GetComponent<Projectile>().Damage = _playerStats.AttackDamage.GetValue();
-
-            var targetPosition = (enemy.transform.position - _projectileSpawn.position) / 3;
-
-            arrow.velocity = targetPosition * _projectileSpeed;
         }
     }
 }

@@ -52,6 +52,8 @@ namespace Sins.Abilities
                 mousePosition = raycastHit.point;
             }
 
+            transform.LookAt(mousePosition);
+
             _animator.SetTrigger("blackhole");
 
             var blackhole = Instantiate(_blackHolePrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();

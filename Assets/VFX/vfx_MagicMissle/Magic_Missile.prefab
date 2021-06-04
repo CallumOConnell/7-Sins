@@ -9731,7 +9731,7 @@ GameObject:
   - component: {fileID: 656249526879696915}
   - component: {fileID: 1069780452744221919}
   m_Layer: 0
-  m_Name: vfx_MagicImpact
+  m_Name: Impact_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9843,7 +9843,7 @@ GameObject:
   - component: {fileID: 3646211284354848563}
   - component: {fileID: 3479368215617691578}
   m_Layer: 0
-  m_Name: vfx_MagicMissle
+  m_Name: Magic_Missile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

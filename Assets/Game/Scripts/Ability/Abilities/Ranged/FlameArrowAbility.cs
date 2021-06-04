@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Sins.Utils;
+using UnityEngine;
 
 namespace Sins.Abilities
 {
@@ -64,6 +65,8 @@ namespace Sins.Abilities
                     if (collider != null)
                     {
                         var target = collider.gameObject;
+
+                        transform.LookAt(target.transform);
 
                         var arrow = Instantiate(_arrowPrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();
 

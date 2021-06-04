@@ -18,12 +18,12 @@ MonoBehaviour:
     _width: 2
     _height: 2
     _shape: 01010101
-  _type: 5
+  _type: 4
   _canDrop: 1
   _prefab: {fileID: 5218353025909905103, guid: 13b8d98fd7893eb46bc5b69588ac1778, type: 3}
   EquipSlot: 3
   Mesh: {fileID: 35508368709962865, guid: 7ee0ce6c0474b6b418bde4c979e7ce89, type: 3}
   CoveredMeshRegions: 00000000
-  MaxHealthModifier: 4
-  ArmourModifier: 2
-  MovementSpeedModifier: 0
+  MaxHealthModifier: 129
+  ArmourModifier: 113
+  MovementSpeedModifier: 174

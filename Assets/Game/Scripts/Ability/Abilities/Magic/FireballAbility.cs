@@ -65,6 +65,8 @@ namespace Sins.Abilities
                     {
                         var target = collider.gameObject;
 
+                        transform.LookAt(target.transform);
+
                         var fireball = Instantiate(_fireballPrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();
 
                         var damage = Random.Range(_minimumDamage, _maximumDamage);

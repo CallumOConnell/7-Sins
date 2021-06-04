@@ -65,6 +65,8 @@ namespace Sins.Abilities
                     {
                         var target = collider.gameObject;
 
+                        transform.LookAt(target.transform);
+
                         var head = target.transform.Find("Head").gameObject;
 
                         var arrow = Instantiate(_arrowPrefab, _projectileSpawn.position, Quaternion.identity, _temporaryParent).GetComponent<Rigidbody>();

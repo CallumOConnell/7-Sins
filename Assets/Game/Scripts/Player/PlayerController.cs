@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 using Sins.Interaction;
+using Sins.Inventory;
 
 namespace Sins.Character
 {
@@ -49,6 +50,8 @@ namespace Sins.Character
 
                         if (interactable != null)
                         {
+                            AdjustRadius(interactable);
+
                             SetFocus(interactable);
                         }
 
@@ -117,6 +120,25 @@ namespace Sins.Character
             var lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
 
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+        }
+
+        private void AdjustRadius(Interactable interactable)
+        {
+            var currentWeapon = EquipmentManager.Instance.CurrentWeapon;
+
+            if (currentWeapon != null)
+            {
+                var weaponType = currentWeapon.AttackType;
+
+                if (weaponType == Abilities.AbilityType.Ranged || weaponType == Abilities.AbilityType.Magic)
+                {
+                    interactable.Radius = 10f;
+                }
+                else
+                {
+                    interactable.Radius = 2f;
+                }
+            }
         }
     }
 }

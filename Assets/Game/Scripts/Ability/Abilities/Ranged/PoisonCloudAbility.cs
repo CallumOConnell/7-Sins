@@ -91,7 +91,7 @@ namespace Sins.Abilities
                 mousePosition = hit.point;
             }
 
-            //mousePosition.y += 2;
+            transform.LookAt(mousePosition);
 
             _animator.SetTrigger("throw");
 

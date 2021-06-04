@@ -18,6 +18,9 @@ namespace Sins.UI
         [SerializeField]
         private PlayerController _playerController;
 
+        [SerializeField]
+        private TabGroup _tabGroup;
+
         public bool GamePaused { get; private set; }
 
         public void PauseGame()
@@ -63,6 +66,8 @@ namespace Sins.UI
             _optionsMenu.alpha = 1f;
             _optionsMenu.interactable = true;
             _optionsMenu.blocksRaycasts = true;
+
+            _tabGroup.Initialise();
         }
 
         public void ExitToTitleScreen() => SceneManager.LoadSceneAsync(0, LoadSceneMode.Single);
