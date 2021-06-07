@@ -28,7 +28,6 @@ namespace Sins.Character
 
                     MaxHealth.AddModifier(armour.MaxHealthModifier);
                     Armour.AddModifier(armour.ArmourModifier);
-                    MovementSpeed.AddModifier(armour.MovementSpeedModifier);
                 }
             }
 
@@ -47,7 +46,6 @@ namespace Sins.Character
 
                     MaxHealth.RemoveModifier(armour.MaxHealthModifier);
                     Armour.RemoveModifier(armour.ArmourModifier);
-                    MovementSpeed.RemoveModifier(armour.MovementSpeedModifier);
                 }
             }
         }

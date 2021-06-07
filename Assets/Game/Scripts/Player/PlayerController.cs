@@ -54,8 +54,6 @@ namespace Sins.Character
 
                             SetFocus(interactable);
                         }
-
-                        _agent.SetDestination(hit.point);
                     }
                 }
 

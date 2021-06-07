@@ -9,7 +9,6 @@ namespace Sins.Character
 
         public Stat MaxHealth;
         public Stat Armour;
-        public Stat MovementSpeed;
         public Stat AttackDamage;
         public Stat AttackSpeed;
 
@@ -30,7 +29,6 @@ namespace Sins.Character
             _agent = GetComponent<NavMeshAgent>();
 
             MaxHealth.OnValueChanged += HealthChangedCallback;
-            MovementSpeed.OnValueChanged += MovementSpeedChangedCallBack;
         }
 
         private void HealthChangedCallback()
@@ -40,8 +38,6 @@ namespace Sins.Character
                 OnMaxHealthValueChanged.Invoke(MaxHealth.GetValue());
             }
         }
-
-        private void MovementSpeedChangedCallBack() => _agent.speed = MovementSpeed.GetValue();
 
         public virtual void Die() { }
 

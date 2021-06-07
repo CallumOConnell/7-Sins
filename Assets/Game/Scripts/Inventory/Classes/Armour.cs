@@ -11,6 +11,5 @@ namespace Sins.Inventory
 
         public int MaxHealthModifier;
         public int ArmourModifier;
-        public int MovementSpeedModifier;
     }
 }

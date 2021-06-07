@@ -26,4 +26,4 @@ MonoBehaviour:
   CoveredMeshRegions: 00000000
   MaxHealthModifier: 129
   ArmourModifier: 113
-  MovementSpeedModifier: 174
+  MovementSpeedModifier: 0
