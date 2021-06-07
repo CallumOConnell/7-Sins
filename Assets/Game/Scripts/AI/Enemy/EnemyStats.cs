@@ -10,6 +10,10 @@ namespace Sins.Character
 {
     public class EnemyStats : CharacterStats
     {
+
+        [SerializeField]
+        private int _Exp = 5;
+
         [SerializeField]
         private EnemyType _type;
 
@@ -28,13 +32,15 @@ namespace Sins.Character
         [SerializeField]
         private Transform _temporaryParent;
 
+        
+
         public EnemyType Type => _type;
 
         public override void Die()
         {
             base.Die();
 
-            Player.Instance.AddExperience(5);
+            Player.Instance.AddExperience(_Exp);
 
             Destroy(gameObject);
 
