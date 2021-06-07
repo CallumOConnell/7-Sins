@@ -2411,8 +2411,6 @@ MonoBehaviour:
     _baseValue: 100
   Armour:
     _baseValue: 0
-  MovementSpeed:
-    _baseValue: 1
   AttackDamage:
     _baseValue: 0
   AttackSpeed:
@@ -2470,6 +2468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 3283092473244695476}
+  _locomationAnimationSmoothTime: 0.02
 --- !u!1 &8999729844093012439
 GameObject:
   m_ObjectHideFlags: 0

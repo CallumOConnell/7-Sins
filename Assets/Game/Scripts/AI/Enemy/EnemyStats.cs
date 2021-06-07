@@ -77,7 +77,6 @@ namespace Sins.Character
 
                 armour.MaxHealthModifier = GenerateStat(item.Rarity);
                 armour.ArmourModifier = GenerateStat(item.Rarity);
-                armour.MovementSpeedModifier = GenerateStat(item.Rarity);
             }
 
             return item;

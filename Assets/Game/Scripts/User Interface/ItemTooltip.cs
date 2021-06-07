@@ -90,11 +90,6 @@ namespace Sins.UI
 
                     formattedDescription += maxHealth;
                 }
-
-                if (armour.MovementSpeedModifier > 0)
-                {
-                    var movementSpeed = $"Movement Speed: {armour.MovementSpeedModifier}\n";
-                }
             }
 
             return formattedDescription;
