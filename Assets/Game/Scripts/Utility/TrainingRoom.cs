@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sins.Utils
@@ -6,16 +7,14 @@ namespace Sins.Utils
     public class TrainingRoom : MonoBehaviour
     {
         [SerializeField]
-        private GameObject[] _enemies;
+        private List<GameObject> _enemies;
 
         [SerializeField]
         private GameObject _barrier;
 
-        private int _deadEnemies = 0;
-
         private void Start()
         {
-            if (_enemies.Length > 0)
+            if (_enemies.Count > 0)
             {
                 StartCoroutine(Monitor());
             }
@@ -23,13 +22,15 @@ namespace Sins.Utils
 
         private IEnumerator Monitor()
         {
-            while (_deadEnemies != _enemies.Length)
+            while (_enemies.Count != 0)
             {
-                foreach (var enemy in _enemies)
+                for (var i = 0; i < _enemies.Count; i++)
                 {
+                    var enemy = _enemies[i];
+
                     if (enemy == null)
                     {
-                        _deadEnemies++;
+                        _enemies.RemoveAt(i);
                     }
                 }
 
