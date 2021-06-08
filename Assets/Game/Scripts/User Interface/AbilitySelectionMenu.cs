@@ -22,7 +22,7 @@ namespace Sins.Abilities
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.U))
+            if (Input.GetKeyDown(KeyCode.S))
             {
                 if (_isOpen)
                 {

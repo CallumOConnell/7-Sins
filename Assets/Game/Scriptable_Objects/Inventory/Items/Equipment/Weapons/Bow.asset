@@ -24,8 +24,8 @@ MonoBehaviour:
   EquipSlot: 0
   AttackType: 2
   Mesh: {fileID: 7846841092047310972, guid: 8e9ea4e4091e8d54999b0d9b473365f2, type: 3}
-  AttackDamageModifier: 15
-  AttackSpeedModifier: 10
+  AttackDamageModifier: 20
+  AttackSpeedModifier: 2
   PositionOffset: {x: 0.0001407067, y: -0.0004460197, z: 0}
   RotationOffset: {x: -196.333, y: -22.68799, z: 58.982}
   ScaleOffset: {x: 0.001046595, y: 0.001046595, z: 0.001046595}

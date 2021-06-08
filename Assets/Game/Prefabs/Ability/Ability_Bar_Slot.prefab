@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5611256861879753250}
   - component: {fileID: 5611256861879753251}
   m_Layer: 5
-  m_Name: Slot_1
+  m_Name: Ability_Bar_Slot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
