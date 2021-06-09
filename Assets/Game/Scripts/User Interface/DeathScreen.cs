@@ -28,12 +28,12 @@ namespace Sins.UI
 
         public void Respawn()
         {
-            SceneManager.LoadSceneAsync(2);
+            SceneManager.LoadSceneAsync(3);
         }
 
         public void ReturnToMenu()
         {
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadSceneAsync(1);
         }
     }
 }

@@ -49,6 +49,10 @@ namespace Sins.UI
                     TooltipSystem.Hide();
                 }
             }
+            else
+            {
+                TooltipSystem.Hide();
+            }
         }
 
         private string GetItemDescription(ItemDefinition item)
