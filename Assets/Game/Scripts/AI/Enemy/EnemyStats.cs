@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using Sins.Inventory;
 using System;
+using UnityEngine.VFX;
 
 namespace Sins.Character
 {
@@ -14,10 +15,30 @@ namespace Sins.Character
         private EnemyType _type;
 
         [SerializeField]
+        private int _exp = 5;
+
+        [SerializeField]
         private LootTable _lootTable;
 
         [SerializeField]
         private float _lootItemDropRadius = 5f;
+
+        [Header("Rarity Colours"), Space]
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color _commonColour;
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color _uncommonColour;
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color _rareColour;
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color _epicColour;
+
+        [SerializeField, ColorUsage(true, true)]
+        private Color _legendaryColour;
 
         [SerializeField]
         private LayerMask _groundLayer;
@@ -27,9 +48,6 @@ namespace Sins.Character
 
         [SerializeField]
         private Transform _temporaryParent;
-
-        [SerializeField]
-        private int _exp = 5;
 
         public EnemyType Type => _type;
 
@@ -85,38 +103,83 @@ namespace Sins.Character
             return item;
         }
 
-        private int GenerateStat(ItemRarity rarity)
+       private int GenerateStat(ItemRarity rarity)
         {
             switch (rarity)
             {
                 case ItemRarity.Common:
                 {
-                    return UnityEngine.Random.Range(0, 20);
+                    return UnityEngine.Random.Range(0, 4);
                 }
-
+                
                 case ItemRarity.Uncommon:
                 {
-                    return UnityEngine.Random.Range(21, 50);
+                    return UnityEngine.Random.Range(5, 7);
                 }
 
                 case ItemRarity.Rare:
                 {
-                    return UnityEngine.Random.Range(51, 100);
+                    return UnityEngine.Random.Range(8, 10);
                 }
 
                 case ItemRarity.Epic:
                 {
-                    return UnityEngine.Random.Range(101, 150);
+                    return UnityEngine.Random.Range(11, 14);
                 }
 
                 case ItemRarity.Legendary:
                 {
-                    return UnityEngine.Random.Range(151, 200);
+                    return UnityEngine.Random.Range(15, 18);
                 }
 
                 default:
                 {
                     return 0;
+                }
+            }
+        }
+
+        private void SetItemVisualEffect(GameObject lootItem, ItemRarity rarity)
+        {
+            var itemVFX = lootItem.transform.GetChild(0).GetComponent<VisualEffect>();
+
+            if (itemVFX != null)
+            {
+                switch (rarity)
+                {
+                    case ItemRarity.Common:
+                    {
+                        itemVFX.SetVector4("Colour_1", _commonColour);
+
+                        break;
+                    }
+                    case ItemRarity.Uncommon:
+                    {
+                        itemVFX.SetVector4("Colour_1", _uncommonColour);
+
+                        break;
+                    }
+                    case ItemRarity.Rare:
+                    {
+                        itemVFX.SetVector4("Colour_1", _rareColour);
+                        itemVFX.SetVector4("Colour_2", _rareColour);
+
+                        break;
+                    }
+                    case ItemRarity.Epic:
+                    {
+                        itemVFX.SetVector4("Colour_1", _epicColour);
+                        itemVFX.SetVector4("Colour_2", _epicColour);
+
+                        break;
+                    }
+                    case ItemRarity.Legendary:
+                    {
+                        itemVFX.SetVector4("Colour_1", _legendaryColour);
+                        itemVFX.SetVector4("Colour_2", _legendaryColour);
+
+                        break;
+                    }
                 }
             }
         }

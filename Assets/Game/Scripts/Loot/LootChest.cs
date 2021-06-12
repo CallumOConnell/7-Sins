@@ -156,27 +156,27 @@ namespace Sins.Loot
             {
                 case ItemRarity.Common:
                 {
-                    return UnityEngine.Random.Range(0, 20);
+                    return UnityEngine.Random.Range(0, 4);
                 }
                 
                 case ItemRarity.Uncommon:
                 {
-                    return UnityEngine.Random.Range(21, 50);
+                    return UnityEngine.Random.Range(5, 7);
                 }
 
                 case ItemRarity.Rare:
                 {
-                    return UnityEngine.Random.Range(51, 100);
+                    return UnityEngine.Random.Range(8, 10);
                 }
 
                 case ItemRarity.Epic:
                 {
-                    return UnityEngine.Random.Range(101, 150);
+                    return UnityEngine.Random.Range(11, 14);
                 }
 
                 case ItemRarity.Legendary:
                 {
-                    return UnityEngine.Random.Range(151, 200);
+                    return UnityEngine.Random.Range(15, 18);
                 }
 
                 default:

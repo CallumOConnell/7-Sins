@@ -47,13 +47,43 @@ VisualEffect:
   m_ResetSeedOnPlay: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 1
+        m_Name: Height
+        m_Overridden: 1
+      - m_Value: 0.01
+        m_Name: Particle Up Speed
+        m_Overridden: 1
+      - m_Value: 5
+        m_Name: Particle Rate
+        m_Overridden: 1
+      - m_Value: 0
+        m_Name: Flare Rate
+        m_Overridden: 1
+      - m_Value: 1
+        m_Name: CircleMeshRate
+        m_Overridden: 1
+      - m_Value: 2
+        m_Name: CircleMeshSize
+        m_Overridden: 1
+      - m_Value: 0.001
+        m_Name: CircleMeshUpSpeed
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1.5, y: 0.2, z: 1}
+        m_Name: FlareSize
+        m_Overridden: 1
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1, y: 1, z: 1, w: 0}
+        m_Name: Colour_1
+        m_Overridden: 1
+      - m_Value: {x: 1, y: 1, z: 1, w: 1}
+        m_Name: Colour_2
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
@@ -61,11 +91,43 @@ VisualEffect:
     m_Matrix4x4f:
       m_Array: []
     m_AnimationCurve:
-      m_Array: []
+      m_Array:
+      - m_Value:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        m_Name: CircleMeshSizeCurve
+        m_Overridden: 1
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Name: Tex01_Glow
+        m_Overridden: 1
+      - m_Value: {fileID: 2800000, guid: b7d66af6397ad6d468d1d381204ff31e, type: 3}
+        m_Name: Tex02_CircleMesh
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &307674396195413635
@@ -122,10 +184,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8212271360015183918}
   - component: {fileID: 5218353025909905098}
-  - component: {fileID: 5218353025909905101}
   - component: {fileID: 5218353025909905100}
-  - component: {fileID: 8305009536745950715}
-  - component: {fileID: -6625142109696064988}
+  - component: {fileID: 1543515800101773029}
   m_Layer: 0
   m_Name: Leggings_Item
   m_TagString: Untagged
@@ -156,20 +216,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5218353025909905103}
   m_Mesh: {fileID: 2465757313349062597, guid: aeb5bef93730aaa449e7c5a4d94fa3bf, type: 3}
---- !u!64 &5218353025909905101
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5218353025909905103}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2465757313349062597, guid: aeb5bef93730aaa449e7c5a4d94fa3bf, type: 3}
 --- !u!114 &5218353025909905100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,20 +230,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _radius: 0.75
   Item: {fileID: 11400000, guid: 61f10385fdd5fcf4a96e42594c4430aa, type: 2}
---- !u!114 &8305009536745950715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5218353025909905103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0413704e051d198409e0d0f48671bf88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!137 &-6625142109696064988
-SkinnedMeshRenderer:
+--- !u!23 &1543515800101773029
+MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -210,12 +244,12 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
+  m_RayTracingMode: 2
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: aeb5bef93730aaa449e7c5a4d94fa3bf, type: 3}
+  - {fileID: 2100000, guid: 794b012aceedd884683d017477a64c7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,15 +270,4 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 2465757313349062597, guid: aeb5bef93730aaa449e7c5a4d94fa3bf, type: 3}
-  m_Bones: []
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 0}
-  m_AABB:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_DirtyAABB: 1
+  m_AdditionalVertexStreams: {fileID: 0}
