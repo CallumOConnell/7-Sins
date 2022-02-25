@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Game/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Game/Scenes/Persistent_Scene.unity
+    guid: a2a2d2169f9d9c748a5c0ce9043b30f9
+  - enabled: 1
+    path: Assets/Game/Scenes/Title_Screen_Scene.unity
+    guid: 9a15461a88a22b5459221a923f71457e
+  - enabled: 1
+    path: Assets/Level Design/Level 1 - Cathedral (Start Level).unity
+    guid: 3b3b7a9b238287c4191bee0f7c4bdc1f
+  - enabled: 1
+    path: Assets/Level Design/Level 2 - Luxuria Level.unity
+    guid: e7d3ce31fc243cb4585e1c4098fd4b3e
   m_configObjects: {}

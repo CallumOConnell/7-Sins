@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b2099e7b305df41a9a934d89c9a46b, type: 3}
+  m_Name: Helmet
+  m_EditorClassIdentifier: 
+  _sprite: {fileID: 21300000, guid: cf456cd4d9069ab45bf47b7e8cb06390, type: 3}
+  _description: The iron helmet is used to provide protection in combat.
+  _shape:
+    _width: 2
+    _height: 2
+    _shape: 01010101
+  _type: 2
+  _canDrop: 1
+  _prefab: {fileID: 2431020328394344308, guid: 437cf9ef682979b4dac90090051ece4a, type: 3}
+  EquipSlot: 1
+  Mesh: {fileID: 2424968039458090957, guid: 4cb3b51fbf473ec43abab6711ee024b5, type: 3}
+  CoveredMeshRegions: 
+  MaxHealthModifier: 20
+  ArmourModifier: 4
