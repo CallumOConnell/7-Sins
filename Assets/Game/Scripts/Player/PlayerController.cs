@@ -122,20 +122,25 @@ namespace Sins.Character
 
         private void AdjustRadius(Interactable interactable)
         {
-            var currentWeapon = EquipmentManager.Instance.CurrentWeapon;
+            if (interactable == null) return;
 
-            if (currentWeapon != null)
+            var equipmentManager = EquipmentManager.Instance;
+
+            if (equipmentManager == null) return;
+
+            var currentWeapon = equipmentManager.CurrentWeapon;
+
+            if (currentWeapon == null) return;
+            
+            var weaponType = currentWeapon.AttackType;
+
+            if (weaponType == Abilities.AbilityType.Ranged || weaponType == Abilities.AbilityType.Magic)
             {
-                var weaponType = currentWeapon.AttackType;
-
-                if (weaponType == Abilities.AbilityType.Ranged || weaponType == Abilities.AbilityType.Magic)
-                {
-                    interactable.Radius = 10f;
-                }
-                else
-                {
-                    interactable.Radius = 2f;
-                }
+                interactable.Radius = 10f;
+            }
+            else
+            {
+                interactable.Radius = 2f;
             }
         }
     }

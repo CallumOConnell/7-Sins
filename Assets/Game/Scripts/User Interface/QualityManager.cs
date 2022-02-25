@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -263,6 +264,64 @@ namespace Sins.UI
                 SetVolume("UI", value);
 
                 _uiText.text = value.ToString("F1");
+            }
+        }
+
+        [SerializeField]
+        private int _pressurePlateIndex = 0;
+
+        [SerializeField]
+        private bool _firstPressurePlate = false;
+
+        private Collider _collider;
+
+        private BoxPuzzle _boxPuzzle;
+
+        private void Awake()
+        {
+            _collider = GetComponent<Collider>();
+            _boxPuzzle = GetComponent<BoxPuzzle>();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (_firstPressurePlate && !_boxPuzzle.IsActive[_pressurePlateIndex]) // Activate the first pressure plate if it is not active
+            {
+                _boxPuzzle.IsActive[_pressurePlateIndex] = true;
+            }
+
+            if (_boxPuzzle.IsActive[_pressurePlateIndex]) // Current pressure plate is active
+            {
+                _boxPuzzle.IsActive[_pressurePlateIndex + 1] = true;
+
+                _collider.enabled = false;
+
+                Debug.Log($"Box {_pressurePlateIndex + 1} is now active", gameObject);
+            }
+            else if (!_firstPressurePlate && !_boxPuzzle.IsActive[_pressurePlateIndex - 1]) // Previous pressure plate is not active
+            {
+                Debug.Log($"You need to active number {_pressurePlateIndex - 1} first before activating number {_pressurePlateIndex}", gameObject);
+            }
+        }
+    }
+
+    public class BoxPuzzle : MonoBehaviour
+    {
+        [SerializeField]
+        private GameObject _door;
+
+        public List<bool> IsActive = new List<bool>()
+        {
+            false,
+            false,
+            false
+        };
+
+        private void Update()
+        {
+            if (!IsActive.Contains(false))
+            {
+                _door.SetActive(false);
             }
         }
     }

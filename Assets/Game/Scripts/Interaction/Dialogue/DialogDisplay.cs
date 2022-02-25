@@ -35,8 +35,6 @@ namespace Sins.Interaction
 
             _speakerUILeft.Speaker = _conversation.SpeakerLeft;
             _speakerUIRight.Speaker = _conversation.SpeakerRight;
-
-            _dialogueScreen.SetActive(false);
         }
 
         public override void Update()
@@ -72,6 +70,8 @@ namespace Sins.Interaction
                 _isInteracting = true;
 
                 _player.GetComponent<PlayerController>().MovementLocked = true;
+
+                AdvanceConversation();
             }
         }
 

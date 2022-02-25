@@ -1619,6 +1619,7 @@ VisualEffect:
   m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
+  m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
       m_Array: []
@@ -1644,6 +1645,7 @@ VisualEffect:
       m_Array: []
 --- !u!73398921 &7542696182800435474
 VFXRenderer:
+  serializedVersion: 1
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1660,13 +1662,6 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1746,12 +1741,10 @@ GameObject:
   - component: {fileID: 7542696184294200275}
   - component: {fileID: 7542696184294200272}
   - component: {fileID: 7542696184294200273}
-  - component: {fileID: 7542696184294200278}
   - component: {fileID: 7542696184294200299}
   - component: {fileID: 7542696184294200296}
   - component: {fileID: 7542696184294200297}
   - component: {fileID: 7542696184294200302}
-  - component: {fileID: 7542696184294200303}
   - component: {fileID: 7542696184294200300}
   m_Layer: 0
   m_Name: Player
@@ -1876,8 +1869,6 @@ MonoBehaviour:
     _baseValue: 100
   Armour:
     _baseValue: 0
-  MovementSpeed:
-    _baseValue: 1
   AttackDamage:
     _baseValue: 100
   AttackSpeed:
@@ -1896,6 +1887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 4163471884829804749}
+  _locomationAnimationSmoothTime: 0.02
 --- !u!114 &7542696184294200286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1908,7 +1900,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892eec3de8aed2944b3e56c8f30732f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackDelay: 1.167
+  _arrowPrefab: {fileID: 0}
+  _magicMissilePrefab: {fileID: 0}
+  _temporaryParent: {fileID: 0}
+  _projectileSpawn: {fileID: 0}
+  _projectileSpeed: 0
+  _meleeAttackDelay: 1.167
   _animator: {fileID: 4163471884829804749}
 --- !u!114 &7542696184294200280
 MonoBehaviour:
@@ -1937,11 +1934,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ab9b7d8d3f34b940a0cc5c3442dc1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Abilities:
+  MeleeAbilities:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  RangedAbilities:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  MagicAbilities:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  CurrentBar: []
+  CurrentBarType: 0
+  _abilityBarUI: {fileID: 0}
 --- !u!114 &7542696184294200279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1981,6 +1988,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 256
+  _animator: {fileID: 0}
 --- !u!114 &7542696184294200277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,6 +2037,7 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 256
+  _animator: {fileID: 0}
 --- !u!114 &7542696184294200283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2063,7 +2072,7 @@ MonoBehaviour:
   _arrowPrefab: {fileID: 3520218380076730859, guid: b0ce2d77a2aeeb444a3be3900c97165c, type: 3}
   _projectileSpawn: {fileID: 7542696182454255058}
   _temporaryParent: {fileID: 0}
-  _throwForce: 10
+  _projectileSpeed: 0
   _minimumDamage: 5
   _maximumDamage: 10
   _radius: 5
@@ -2090,7 +2099,7 @@ MonoBehaviour:
   _arrowPrefab: {fileID: 6629518001810712115, guid: 139edbc8be3905a4b8557c14bfd8781a, type: 3}
   _projectileSpawn: {fileID: 7542696182454255058}
   _temporaryParent: {fileID: 0}
-  _throwForce: 10
+  _projectileSpeed: 0
   _minimumDamage: 1
   _maximumDamage: 2
   _radius: 5
@@ -2162,34 +2171,6 @@ MonoBehaviour:
   _ability: {fileID: 11400000, guid: 96a82c89c77ffb84086300a5d1a3d930, type: 2}
   _attackSpeedIncrease: 0
   _effectDuration: 0
---- !u!114 &7542696184294200278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542696184294200262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c99324f2a666e6647969497a26d722a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ability: {fileID: 11400000, guid: 674b37bdb0fff8648a0d821b0d45f825, type: 2}
-  _arrowPrefab: {fileID: 3520218380076730859, guid: b0ce2d77a2aeeb444a3be3900c97165c, type: 3}
-  _projectileSpawn: {fileID: 7542696182454255058}
-  _temporaryParent: {fileID: 0}
-  _throwForce: 10
-  _minimumDamage: 1
-  _maximumDamage: 2
-  _radius: 5
-  _camera: {fileID: 0}
-  _enemyMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 256
-  _animator: {fileID: 4163471884829804749}
 --- !u!114 &7542696184294200299
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,7 +2229,7 @@ MonoBehaviour:
   _fireballPrefab: {fileID: 6629518001810712115, guid: 139edbc8be3905a4b8557c14bfd8781a, type: 3}
   _projectileSpawn: {fileID: 7542696182454255058}
   _temporaryParent: {fileID: 0}
-  _throwForce: 10
+  _projectileSpeed: 0
   _minimumDamage: 2
   _maximumDamage: 4
   _radius: 5
@@ -2281,33 +2262,6 @@ MonoBehaviour:
     m_Bits: 512
   _animator: {fileID: 4163471884829804749}
   _vfx: {fileID: 7542696182800435501}
---- !u!114 &7542696184294200303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542696184294200262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01acde3c692b4804dbc1aa5da087829a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ability: {fileID: 11400000, guid: c7c5b86a2e105c54ebd4584c042cca5e, type: 2}
-  _manaPrefab: {fileID: 6598892776608444560, guid: c0c38b6822c4e1b41b9e2454a6d13af9, type: 3}
-  _projectileSpawn: {fileID: 7542696182454255058}
-  _temporaryParent: {fileID: 0}
-  _projectileSpeed: 100
-  _minimumDamage: 1
-  _maximumDamage: 2
-  _radius: 10
-  _camera: {fileID: 0}
-  _enemyMask:
-    serializedVersion: 2
-    m_Bits: 512
-  _groundMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &7542696184294200300
 MonoBehaviour:
   m_ObjectHideFlags: 0
